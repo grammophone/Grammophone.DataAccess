@@ -14,6 +14,16 @@ namespace Grammophone.DataAccess
 	public interface IDomainContainer : IDisposable, IContextOwner
 	{
 		/// <summary>
+		/// Gets an <see cref="IEntityEntry{E}"/> object for the given entity 
+		/// providing access to information about the entity 
+		/// and the ability to perform actions on the entity.
+		/// </summary>
+		/// <typeparam name="E">The type of the entity.</typeparam>
+		/// <param name="entity">The entity.</param>
+		/// <returns>Returns the entry for the entity.</returns>
+		IEntityEntry<E> Entry<E>(E entity) where E : class;
+
+		/// <summary>
 		/// Save changes.
 		/// </summary>
 		/// <returns>Returns the number of objects written to the storage.</returns>

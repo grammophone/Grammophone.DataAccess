@@ -42,13 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICollectionEntry.cs" />
+    <Compile Include="IComplexPropertyEntry.cs" />
     <Compile Include="IContextOwner.cs" />
     <Compile Include="IDomainContainer.cs" />
+    <Compile Include="IEntityEntry.cs" />
     <Compile Include="IEntityListener.cs" />
     <Compile Include="IEntityQuery.cs" />
     <Compile Include="IEntitySet.cs" />
+    <Compile Include="IMemberEntry.cs" />
+    <Compile Include="IPropertyEntry.cs" />
+    <Compile Include="IReferenceEntry.cs" />
+    <Compile Include="IRelationEntry.cs" />
     <Compile Include="ITransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrackingState.cs" />
     <Compile Include="TransactionMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -149,6 +149,6 @@ namespace Grammophone.DataAccess
 		/// </summary>
 		/// <param name="exception">The exception to transform.</param>
 		/// <returns>Returns the transformed exception or the same exception when no transformation is needed.</returns>
-		Exception TranslateException(Exception exception);
+		Exception TranslateException(SystemException exception);
 	}
 }

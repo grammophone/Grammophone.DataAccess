@@ -26,7 +26,7 @@ namespace Grammophone.DataAccess
 		/// Marks the transaction as valid for commit.
 		/// Actual committing takes place when all nested transactions are
 		/// disposed and marked as committed.
-		/// If this method has not been called when 
+		/// If this method or <see cref="CommitAsync"/> or <see cref="Pass"/> has not been called when
 		/// method <see cref="IDisposable.Dispose"/> is invoked, the
 		/// transaction is marked for rollback. A <see cref="IDomainContainer.SaveChanges"/>
 		/// call is implied calling this method when the transaction
@@ -38,13 +38,23 @@ namespace Grammophone.DataAccess
 		/// Marks the transaction as valid for commit.
 		/// Actual committing takes place when all nested transactions are
 		/// disposed and marked as committed.
-		/// If this method has not been called when 
+		/// If this method or <see cref="Commit"/> or <see cref="Pass"/> has not been called when
 		/// method <see cref="IDisposable.Dispose"/> is invoked, the
 		/// transaction is marked for rollback. A <see cref="IDomainContainer.SaveChangesAsync()"/>
 		/// call is implied calling this method when the transaction
 		/// is not marked for rollback.
 		/// </summary>
 		Task CommitAsync();
+
+		/// <summary>
+		/// Marks the transaction valid for commit but does not save.
+		/// Prevents rollback of higher nesting transactions;
+		/// thus passes the decision whether to save to the higher transactions.
+		/// If this method or <see cref="Commit"/> or <see cref="CommitAsync"/> has not been called when
+		/// method <see cref="IDisposable.Dispose"/> is invoked, the
+		/// transaction is marked for rollback.
+		/// </summary>
+		void Pass();
 
 		/// <summary>
 		/// Fired when the whole transaction is committed successfully.

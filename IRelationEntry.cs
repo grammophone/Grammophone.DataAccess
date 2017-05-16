@@ -16,9 +16,9 @@ namespace Grammophone.DataAccess
 		where E : class
 	{
 		/// <summary>
-		/// If true, the relation has been completely loaded from the database.
+		/// Determines or sets whether the relation has been loaded from the database.
 		/// </summary>
-		bool IsLoaded { get; }
+		bool IsLoaded { get; set; }
 
 		/// <summary>
 		/// Loads the relation from the database. 

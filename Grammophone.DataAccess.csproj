@@ -46,6 +46,7 @@
     <Compile Include="EntityValidationError.cs" />
     <Compile Include="EntityValidationException.cs" />
     <Compile Include="EntityValidationResult.cs" />
+    <Compile Include="IChangeTracker.cs" />
     <Compile Include="IntegrityViolationException.cs" />
     <Compile Include="ICollectionEntry.cs" />
     <Compile Include="IComplexPropertyEntry.cs" />

@@ -14,6 +14,11 @@ namespace Grammophone.DataAccess
 	public interface IDomainContainer : IDisposable, IContextOwner
 	{
 		/// <summary>
+		/// Report and alter change tracking.
+		/// </summary>
+		IChangeTracker ChangeTracker { get; }
+
+		/// <summary>
 		/// Gets an <see cref="IEntityEntry{E}"/> object for the given entity 
 		/// providing access to information about the entity 
 		/// and the ability to perform actions on the entity.

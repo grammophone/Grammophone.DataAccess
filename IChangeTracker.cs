@@ -24,7 +24,7 @@ namespace Grammophone.DataAccess
 
 		/// <summary>
 		/// Undo any changes to tracked entities.
-		/// In particular, revert values of changes entities, detach new entities, and cancel deleting entities.
+		/// In particular, revert values of changed entities, detach new entities, and cancel deleting entities.
 		/// </summary>
 		void UndoChanges();
 

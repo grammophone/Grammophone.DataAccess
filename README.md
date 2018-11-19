@@ -110,6 +110,6 @@ supports both scenarios by supplying the `TransactionMode` in the corresponding 
 When an error in the data store occurs, the exceptions are normalized to be derived from `DataAccessException`.
 The descendants `IntegrityViolationException`, `UniqueConstraintViolationException` and
 `ReferentialConstraintViolationException` permit universal handling of errors in
-different data stores.
+different types of data stores.
 
 This library has no dependencies.

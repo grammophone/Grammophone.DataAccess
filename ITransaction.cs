@@ -62,7 +62,7 @@ namespace Grammophone.DataAccess
 		event Action Succeeding;
 
 		/// <summary>
-		/// Fired when the whole transaction is committed successfully.
+		/// Fired when the whole transaction is rolled back.
 		/// </summary>
 		event Action RollingBack;
 	}

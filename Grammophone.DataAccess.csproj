@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{C9030969-1247-4EE9-BF68-782C1D676C8F}</ProjectGuid>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>Grammophone.DataAccess</AssemblyTitle>
     <Product>Grammophone.DataAccess</Product>
     <Copyright>Copyright ©  2016</Copyright>
@@ -15,9 +15,6 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
 		<None Remove=".git" />
 		<None Remove=".gitignore" />
 	</ItemGroup>

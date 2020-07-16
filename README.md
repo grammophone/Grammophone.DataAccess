@@ -1,5 +1,5 @@
 # Grammophone.DataAccess
-This .NET Framework library abstracts data access and reinforces it with higher-level functionality.
+This .NET Standard 2.0 library abstracts data access and reinforces it with higher-level functionality.
 
 At the center of the abstract contract is `IDomainContainer`.
 This abstracts the repository class for communicating with the data store, which typically is

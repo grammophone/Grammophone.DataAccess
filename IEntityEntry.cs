@@ -27,6 +27,11 @@ namespace Grammophone.DataAccess
 		TrackingState State { get; set; }
 
 		/// <summary>
+		/// The dictionary of property entries of the entity indexed by property name.
+		/// </summary>
+		IReadOnlyDictionary<string, IPropertyEntry<E, object>> PropertiesByName { get; }
+
+		/// <summary>
 		/// Reloads the entity from the database overwriting any property 
 		/// values with values from the database.
 		/// The entity will be in the <see cref="TrackingState.Unchanged"/> state after calling this method.

@@ -24,5 +24,15 @@ namespace Grammophone.DataAccess
 		/// If true, the property is marked as modified.
 		/// </summary>
 		bool IsModified { get; set; }
+
+		/// <summary>
+		/// True if the type of the property is primitive.
+		/// </summary>
+		bool IsPrimitive { get; }
+
+		/// <summary>
+		/// True if the type of the property is a complex type.
+		/// </summary>
+		bool IsComplexType { get; }
 	}
 }

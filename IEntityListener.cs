@@ -30,5 +30,10 @@ namespace Grammophone.DataAccess
 		/// Called after materialization of an entity.
 		/// </summary>
 		void OnRead(object entity);
+
+		/// <summary>
+		/// Called after adding an entity.
+		/// </summary>
+		void OnAdded(object entity);
 	}
 }

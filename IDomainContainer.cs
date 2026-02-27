@@ -91,6 +91,15 @@ namespace Grammophone.DataAccess
 			where T : class;
 
 		/// <summary>
+		/// Attaches the given entity to the context underlying the set.
+		/// That is, the entity is placed into the context in the Unchanged state, just as if it had been read from the database.
+		/// </summary>
+		/// <typeparam name="E">The type of the entity.</typeparam>
+		/// <param name="entity">The entity to attach.</param>
+		void Attach<E>(E entity)
+			where E : class;
+
+		/// <summary>
 		/// Detach a tracked entity.
 		/// </summary>
 		/// <param name="entity">The entity to detach.</param>

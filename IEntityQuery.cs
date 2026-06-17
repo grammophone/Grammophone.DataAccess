@@ -15,6 +15,16 @@ namespace Grammophone.DataAccess
 		where E : class
 	{
 		/// <summary>
+		/// The <see cref="IQueryProvider"/> of the native data access system.
+		/// </summary>
+		IQueryProvider NativeProvider { get; }
+
+		/// <summary>
+		/// The domain container which the query pertains to.
+		/// </summary>
+		IDomainContainer DomainContainer { get; }
+
+		/// <summary>
 		/// Returns a new query where the entities returned will not be cached in the
 		/// container.
 		/// </summary>

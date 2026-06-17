@@ -11,8 +11,7 @@ namespace Grammophone.DataAccess
 	/// Represents a query for entities of type <typeparamref name="E"/>.
 	/// </summary>
 	/// <typeparam name="E">The type of entities being queried.</typeparam>
-	public interface IEntityQuery<E> : IOrderedQueryable<E>
-		where E : class
+	public interface IEntityQuery<E> : IQueryable<E>
 	{
 		/// <summary>
 		/// The <see cref="IQueryProvider"/> of the native data access system.

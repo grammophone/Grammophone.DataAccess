@@ -503,244 +503,724 @@ namespace Grammophone.DataAccess
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<TResult> MaxAsync<T, TResult>(IQueryable<T> query, Expression<Func<T, TResult>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="int"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<int> SumAsync(IQueryable<int> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="int"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<int> SumAsync(IQueryable<int> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="int"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<int?> SumAsync(IQueryable<int?> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="int"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<int?> SumAsync(IQueryable<int?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="long"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<long> SumAsync(IQueryable<long> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="long"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<long> SumAsync(IQueryable<long> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="long"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<long?> SumAsync(IQueryable<long?> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="long"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<long?> SumAsync(IQueryable<long?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="float"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<float> SumAsync(IQueryable<float> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="float"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float> SumAsync(IQueryable<float> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="float"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<float?> SumAsync(IQueryable<float?> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="float"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float?> SumAsync(IQueryable<float?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="double"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<double> SumAsync(IQueryable<double> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="double"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> SumAsync(IQueryable<double> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="double"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<double?> SumAsync(IQueryable<double?> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="double"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> SumAsync(IQueryable<double?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="decimal"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<decimal> SumAsync(IQueryable<decimal> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="decimal"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal> SumAsync(IQueryable<decimal> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="decimal"/> values to calculate the sum of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		public abstract Task<decimal?> SumAsync(IQueryable<decimal?> query);
 
-		/// <summary>Asynchronously computes the sum of a sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="decimal"/> values to calculate the sum of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal?> SumAsync(IQueryable<decimal?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<int> SumAsync<T>(IQueryable<T> query, Expression<Func<T, int>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<int> SumAsync<T>(IQueryable<T> query, Expression<Func<T, int>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<int?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, int?>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<int?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, int?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<long> SumAsync<T>(IQueryable<T> query, Expression<Func<T, long>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<long> SumAsync<T>(IQueryable<T> query, Expression<Func<T, long>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<long?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, long?>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<long?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, long?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<float> SumAsync<T>(IQueryable<T> query, Expression<Func<T, float>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float> SumAsync<T>(IQueryable<T> query, Expression<Func<T, float>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<float?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, float?>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, float?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<double> SumAsync<T>(IQueryable<T> query, Expression<Func<T, double>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> SumAsync<T>(IQueryable<T> query, Expression<Func<T, double>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<double?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, double?>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, double?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<decimal> SumAsync<T>(IQueryable<T> query, Expression<Func<T, decimal>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal> SumAsync<T>(IQueryable<T> query, Expression<Func<T, decimal>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		public abstract Task<decimal?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, decimal?>> selector);
 
-		/// <summary>Asynchronously computes the sum of a projected sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal?> SumAsync<T>(IQueryable<T> query, Expression<Func<T, decimal?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="int"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<double> AverageAsync(IQueryable<int> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="int"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> AverageAsync(IQueryable<int> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="int"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<double?> AverageAsync(IQueryable<int?> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="int"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> AverageAsync(IQueryable<int?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="long"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<double> AverageAsync(IQueryable<long> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="long"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> AverageAsync(IQueryable<long> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="long"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<double?> AverageAsync(IQueryable<long?> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="long"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> AverageAsync(IQueryable<long?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="float"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<float> AverageAsync(IQueryable<float> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="float"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float> AverageAsync(IQueryable<float> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="float"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<float?> AverageAsync(IQueryable<float?> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="float"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float?> AverageAsync(IQueryable<float?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="double"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<double> AverageAsync(IQueryable<double> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="double"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> AverageAsync(IQueryable<double> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="double"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<double?> AverageAsync(IQueryable<double?> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="double"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> AverageAsync(IQueryable<double?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="decimal"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<decimal> AverageAsync(IQueryable<decimal> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="decimal"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal> AverageAsync(IQueryable<decimal> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="decimal"/> values to calculate the average of.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		public abstract Task<decimal?> AverageAsync(IQueryable<decimal?> query);
 
-		/// <summary>Asynchronously computes the average of a sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="decimal"/> values to calculate the average of.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal?> AverageAsync(IQueryable<decimal?> query, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<double> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, int>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, int>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<double?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, int?>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="int"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="int"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, int?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<double> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, long>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, long>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<double?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, long?>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="long"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="long"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, long?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<float> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, float>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, float>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<float?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, float?>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="float"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="float"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<float?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, float?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<double> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, double>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, double>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<double?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, double?>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="double"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="double"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<double?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, double?>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<decimal> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, decimal>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, decimal>> selector, CancellationToken cancellationToken);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		public abstract Task<decimal?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, decimal?>> selector);
 
-		/// <summary>Asynchronously computes the average of a projected sequence of nullable <see cref="decimal"/> values.</summary>
+		/// <summary>
+		/// Asynchronously computes the average of a projected sequence of nullable <see cref="decimal"/> values.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
+		/// <param name="selector">A projection function to apply to each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
 		public abstract Task<decimal?> AverageAsync<T>(IQueryable<T> query, Expression<Func<T, decimal?>> selector, CancellationToken cancellationToken);
 	}
 }

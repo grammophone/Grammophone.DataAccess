@@ -11,14 +11,14 @@ namespace Grammophone.DataAccess.QueryExtensions
 		#region Public fields
 
 		/// <summary>Method information for <see cref="QueryFunctions.Like(string, string)"/>.</summary>
-		public static readonly MethodInfo Like = MethodInfoCatalog.GetMethod(
+		public static readonly MethodInfo Like = MethodInfoCatalog.GetMethodInfo(
 			typeof(QueryFunctions),
 			nameof(QueryFunctions.Like),
 			typeof(string),
 			typeof(string));
 
 		/// <summary>Method information for <see cref="QueryFunctions.Like(string, string, string)"/>.</summary>
-		public static readonly MethodInfo LikeWithEscape = MethodInfoCatalog.GetMethod(
+		public static readonly MethodInfo LikeWithEscape = MethodInfoCatalog.GetMethodInfo(
 			typeof(QueryFunctions),
 			nameof(QueryFunctions.Like),
 			typeof(string),
@@ -26,13 +26,13 @@ namespace Grammophone.DataAccess.QueryExtensions
 			typeof(string));
 
 		/// <summary>Method information for <see cref="QueryFunctions.TruncateTime(DateTime?)"/>.</summary>
-		public static readonly MethodInfo TruncateDateTime = MethodInfoCatalog.GetMethod(
+		public static readonly MethodInfo TruncateDateTime = MethodInfoCatalog.GetMethodInfo(
 			typeof(QueryFunctions),
 			nameof(QueryFunctions.TruncateTime),
 			typeof(DateTime?));
 
 		/// <summary>Method information for <see cref="QueryFunctions.TruncateTime(DateTimeOffset?)"/>.</summary>
-		public static readonly MethodInfo TruncateDateTimeOffset = MethodInfoCatalog.GetMethod(
+		public static readonly MethodInfo TruncateDateTimeOffset = MethodInfoCatalog.GetMethodInfo(
 			typeof(QueryFunctions),
 			nameof(QueryFunctions.TruncateTime),
 			typeof(DateTimeOffset?));
@@ -94,7 +94,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 		private static MethodInfo GetDateTimeDiff(string methodName)
 		{
-			return MethodInfoCatalog.GetMethod(
+			return MethodInfoCatalog.GetMethodInfo(
 				typeof(QueryFunctions),
 				methodName,
 				typeof(DateTime?),
@@ -103,7 +103,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 		private static MethodInfo GetDateTimeOffsetDiff(string methodName)
 		{
-			return MethodInfoCatalog.GetMethod(
+			return MethodInfoCatalog.GetMethodInfo(
 				typeof(QueryFunctions),
 				methodName,
 				typeof(DateTimeOffset?),
@@ -112,7 +112,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 		private static MethodInfo GetDateTimeAdd(string methodName)
 		{
-			return MethodInfoCatalog.GetMethod(
+			return MethodInfoCatalog.GetMethodInfo(
 				typeof(QueryFunctions),
 				methodName,
 				typeof(DateTime?),

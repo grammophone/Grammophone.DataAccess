@@ -7,7 +7,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 	/// <summary>
 	/// Helper methods for locating method information used by query extension catalogs.
 	/// </summary>
-	internal static class MethodInfoCatalog
+	public static class MethodInfoCatalog
 	{
 		#region Public methods
 
@@ -27,7 +27,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (methodName == null) throw new ArgumentNullException(nameof(methodName));
 			if (parameterTypeDefinitions == null) throw new ArgumentNullException(nameof(parameterTypeDefinitions));
 
-			return GetMethod(
+			return GetMethodInfo(
 				declaringType,
 				methodName,
 				methodInfo => methodInfo.IsGenericMethodDefinition,
@@ -41,20 +41,20 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="methodName">The method name.</param>
 		/// <param name="parameterTypes">The parameter types to match.</param>
 		/// <returns>The matching method.</returns>
-		public static MethodInfo GetMethod(Type declaringType, string methodName, params Type[] parameterTypes)
+		public static MethodInfo GetMethodInfo(Type declaringType, string methodName, params Type[] parameterTypes)
 		{
 			if (declaringType == null) throw new ArgumentNullException(nameof(declaringType));
 			if (methodName == null) throw new ArgumentNullException(nameof(methodName));
 			if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 
-			return GetMethod(declaringType, methodName, methodInfo => !methodInfo.IsGenericMethod, parameterTypes);
+			return GetMethodInfo(declaringType, methodName, methodInfo => !methodInfo.IsGenericMethod, parameterTypes);
 		}
 
 		#endregion
 
 		#region Private methods
 
-		private static MethodInfo GetMethod(
+		private static MethodInfo GetMethodInfo(
 			Type declaringType,
 			string methodName,
 			Func<MethodInfo, bool> methodPredicate,

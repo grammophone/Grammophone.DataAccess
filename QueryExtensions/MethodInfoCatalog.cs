@@ -68,7 +68,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 				if (parameters.Length != parameterTypes.Length) continue;
 
-				if (parameters.Select(p => NormalizeParameterType(p.ParameterType)).SequenceEqual(parameterTypes))
+				if (parameters.Select(p => NormalizeParameterType(p.ParameterType)).SequenceEqual(parameterTypes.Select(NormalizeParameterType)))
 				{
 					return methodInfo;
 				}
@@ -80,7 +80,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 		private static Type NormalizeParameterType(Type parameterType)
 		{
-			if (parameterType.IsGenericType)
+			if (parameterType.IsGenericType && parameterType.ContainsGenericParameters)
 			{
 				return parameterType.GetGenericTypeDefinition();
 			}

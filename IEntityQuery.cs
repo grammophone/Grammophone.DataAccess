@@ -27,7 +27,7 @@ namespace Grammophone.DataAccess
 	/// Represents a query for entities of type <typeparamref name="E"/>.
 	/// </summary>
 	/// <typeparam name="E">The type of entities being queried.</typeparam>
-	public interface IEntityQuery<E> : IEntityQuery, IQueryable<E>
+	public interface IEntityQuery<E> : IEntityQuery, IOrderedQueryable<E>
 	{
 	}
 }

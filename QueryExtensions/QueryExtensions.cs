@@ -45,7 +45,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <remarks>
 		/// Portable eager loading supports simple navigation paths. Provider-specific filtered include semantics are not part of this abstraction.
 		/// </remarks>
-		public static IIncludableQueryable<T, TProperty> Include<T, TProperty>(
+		public static IIncludableEntityQuery<T, TProperty> Include<T, TProperty>(
 			this IQueryable<T> query,
 			Expression<Func<T, TProperty>> pathExpression)
 			where T : class
@@ -64,7 +64,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 				query.Expression,
 				Expression.Quote(pathExpression));
 
-			return new IncludableQueryable<T, TProperty>(entityQuery, methodCallExpression);
+			return new IncludableEntityQuery<T, TProperty>(entityQuery, methodCallExpression);
 		}
 
 		/// <summary>
@@ -76,8 +76,8 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">The includable source query.</param>
 		/// <param name="pathExpression">A lambda expression representing the path to include.</param>
 		/// <returns>A new includable query with the extended include path.</returns>
-		public static IIncludableQueryable<T, TProperty> ThenInclude<T, TPreviousProperty, TProperty>(
-			this IIncludableQueryable<T, TPreviousProperty> query,
+		public static IIncludableEntityQuery<T, TProperty> ThenInclude<T, TPreviousProperty, TProperty>(
+			this IIncludableEntityQuery<T, TPreviousProperty> query,
 			Expression<Func<TPreviousProperty, TProperty>> pathExpression)
 			where T : class
 		{
@@ -93,7 +93,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 				query.Expression,
 				Expression.Quote(pathExpression));
 
-			return new IncludableQueryable<T, TProperty>(query, methodCallExpression);
+			return new IncludableEntityQuery<T, TProperty>(query, methodCallExpression);
 		}
 
 		/// <summary>
@@ -105,8 +105,8 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">The includable source query.</param>
 		/// <param name="pathExpression">A lambda expression representing the path to include.</param>
 		/// <returns>A new includable query with the extended include path.</returns>
-		public static IIncludableQueryable<T, TProperty> ThenInclude<T, TPreviousProperty, TProperty>(
-			this IIncludableQueryable<T, IEnumerable<TPreviousProperty>> query,
+		public static IIncludableEntityQuery<T, TProperty> ThenInclude<T, TPreviousProperty, TProperty>(
+			this IIncludableEntityQuery<T, IEnumerable<TPreviousProperty>> query,
 			Expression<Func<TPreviousProperty, TProperty>> pathExpression)
 			where T : class
 		{
@@ -122,7 +122,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 				query.Expression,
 				Expression.Quote(pathExpression));
 
-			return new IncludableQueryable<T, TProperty>(query, methodCallExpression);
+			return new IncludableEntityQuery<T, TProperty>(query, methodCallExpression);
 		}
 
 		/// <summary>

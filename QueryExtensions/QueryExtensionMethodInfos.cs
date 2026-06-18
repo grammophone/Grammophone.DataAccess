@@ -68,7 +68,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 				var firstParameterType = parameters[0].ParameterType;
 
-				if (!firstParameterType.IsGenericType || firstParameterType.GetGenericTypeDefinition() != typeof(IIncludableQueryable<,>)) continue;
+				if (!firstParameterType.IsGenericType || firstParameterType.GetGenericTypeDefinition() != typeof(IIncludableEntityQuery<,>)) continue;
 
 				var includedType = firstParameterType.GetGenericArguments()[1];
 

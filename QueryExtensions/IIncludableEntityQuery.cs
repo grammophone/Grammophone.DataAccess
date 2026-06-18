@@ -5,7 +5,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 	/// </summary>
 	/// <typeparam name="TEntity">The root entity type.</typeparam>
 	/// <typeparam name="TProperty">The last included property type.</typeparam>
-	public interface IIncludableQueryable<TEntity, TProperty> : IEntityQuery<TEntity>
+	public interface IIncludableEntityQuery<TEntity, TProperty> : IEntityQuery<TEntity>
 	{
 	}
 }

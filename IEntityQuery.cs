@@ -10,7 +10,7 @@ namespace Grammophone.DataAccess
 	/// <summary>
 	/// Represents a query for entities.
 	/// </summary>
-	public interface IEntityQuery : IQueryable
+	public interface IEntityQuery : IOrderedQueryable
 	{
 		/// <summary>
 		/// The <see cref="IQueryProvider"/> of the native data access system.

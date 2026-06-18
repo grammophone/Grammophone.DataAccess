@@ -9,6 +9,9 @@ namespace Grammophone.DataAccess
 	/// <summary>
 	/// Maps expressions of a portable method into one of a native method that has the same arguments signature.
 	/// </summary>
+	/// <remarks>
+	/// The native method should have a return type compatible with the portable method being replaced.
+	/// </remarks>
 	public class IsomorphicMethodMapping : MethodMapping
 	{
 		/// <summary>

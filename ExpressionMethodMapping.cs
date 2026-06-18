@@ -9,6 +9,9 @@ namespace Grammophone.DataAccess
 	/// <summary>
 	/// Signature of a callback for a method call expression translation.
 	/// </summary>
+	/// <remarks>
+	/// The returned expression must have a type compatible with the original method call being replaced.
+	/// </remarks>
 	/// <param name="originalMethodInfo">
 	/// The method info that was matched in the original expression. Note that if the method is generic, this is the specialized method info, 
 	/// unlike the generic definition in <see cref="MethodMapping.PortableMethodInfo"/>.
@@ -24,6 +27,9 @@ namespace Grammophone.DataAccess
 	/// <summary>
 	/// Mapping of a method call expression using a specified callback.
 	/// </summary>
+	/// <remarks>
+	/// The callback must preserve type compatibility with the portable method call being replaced.
+	/// </remarks>
 	public class ExpressionMethodMapping : MethodMapping
 	{
 		/// <summary>

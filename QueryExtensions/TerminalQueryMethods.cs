@@ -38,7 +38,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AllAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).AllAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -58,7 +58,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AllAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AllAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -110,7 +110,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -130,7 +130,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -182,7 +182,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -202,7 +202,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -254,7 +254,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -274,7 +274,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -329,7 +329,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -350,7 +350,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -402,7 +402,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -422,7 +422,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -468,7 +468,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -486,7 +486,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -532,7 +532,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query), predicate);
+			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query), TranslateExpression(query, predicate));
 		}
 
 		/// <summary>
@@ -550,7 +550,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query), predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query), TranslateExpression(query, predicate), cancellationToken);
 		}
 
 		/// <summary>
@@ -650,7 +650,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -668,7 +668,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -712,7 +712,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -730,7 +730,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -984,7 +984,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1000,7 +1000,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1014,7 +1014,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1030,7 +1030,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1044,7 +1044,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1060,7 +1060,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1074,7 +1074,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1090,7 +1090,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1104,7 +1104,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1120,7 +1120,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1134,7 +1134,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1150,7 +1150,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1164,7 +1164,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1180,7 +1180,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1194,7 +1194,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1210,7 +1210,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1224,7 +1224,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1240,7 +1240,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1254,7 +1254,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1270,7 +1270,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1524,7 +1524,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1540,7 +1540,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1554,7 +1554,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1570,7 +1570,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1584,7 +1584,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1600,7 +1600,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1614,7 +1614,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1630,7 +1630,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1644,7 +1644,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1660,7 +1660,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1674,7 +1674,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1690,7 +1690,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1704,7 +1704,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1720,7 +1720,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1734,7 +1734,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1750,7 +1750,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1764,7 +1764,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1780,7 +1780,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		/// <summary>
@@ -1794,7 +1794,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector));
 		}
 
 		/// <summary>
@@ -1810,7 +1810,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
-			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), TranslateExpression(query, selector), cancellationToken);
 		}
 
 		#endregion
@@ -1851,7 +1851,26 @@ namespace Grammophone.DataAccess.QueryExtensions
 			}
 		}
 
+		private static TExpression TranslateExpression<TShape, TExpression>(IQueryable<TShape> queryable, TExpression expression)
+			where TExpression : Expression
+		{
+			switch (queryable)
+			{
+				case IEntityQuery<TShape> entityQuery:
+
+					return entityQuery.Provider switch
+					{
+						TranslatingQueryProvider translatingQueryProvider => (TExpression)translatingQueryProvider.TranslateExpression(expression),
+						_ => expression
+					};
+
+				default:
+					return expression;
+			}
+		}
+
 		#endregion
 	}
 }
+
 

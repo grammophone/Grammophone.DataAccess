@@ -9,6 +9,10 @@ namespace Grammophone.DataAccess
 	/// <summary>
 	/// Base specification for mapping a portable method expression to a native expression which a provider can interpret.
 	/// </summary>
+	/// <remarks>
+	/// Implementations must return a method call expression whose type is compatible with the portable method call being replaced.
+	/// This preserves the type and shape of containing expressions, such as predicate and selector lambda expressions.
+	/// </remarks>
 	public abstract class MethodMapping
 	{
 		/// <summary>

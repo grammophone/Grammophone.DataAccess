@@ -123,7 +123,9 @@ namespace Grammophone.DataAccess
 				return expression;
 			}
 
-			return new MethodMappingExpressionVisitor(queryTranslator.MethodMappingsByMethodInfo).Visit(expression);
+			var normalizedExpression = new IncludeChainNormalizerVisitor().Visit(expression);
+
+			return new MethodMappingExpressionVisitor(queryTranslator.MethodMappingsByMethodInfo).Visit(normalizedExpression);
 		}
 
 		#endregion

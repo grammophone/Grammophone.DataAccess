@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -44,13 +45,18 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <remarks>
 		/// Portable eager loading supports simple navigation paths. Provider-specific filtered include semantics are not part of this abstraction.
 		/// </remarks>
-		public static IQueryable<T> Include<T, TProperty>(
+		public static IIncludableQueryable<T, TProperty> Include<T, TProperty>(
 			this IQueryable<T> query,
 			Expression<Func<T, TProperty>> pathExpression)
 			where T : class
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (pathExpression == null) throw new ArgumentNullException(nameof(pathExpression));
+			if (!(query is IEntityQuery<T> entityQuery))
+			{
+				throw new NotSupportedException(
+					"Portable typed Include requires a query originating from a Grammophone entity query.");
+			}
 
 			var methodCallExpression = Expression.Call(
 				null,
@@ -58,7 +64,65 @@ namespace Grammophone.DataAccess.QueryExtensions
 				query.Expression,
 				Expression.Quote(pathExpression));
 
-			return query.Provider.CreateQuery<T>(methodCallExpression);
+			return new IncludableQueryable<T, TProperty>(entityQuery, methodCallExpression);
+		}
+
+		/// <summary>
+		/// Specifies additional related objects to include through a previously included reference navigation.
+		/// </summary>
+		/// <typeparam name="T">The root entity type.</typeparam>
+		/// <typeparam name="TPreviousProperty">The previously included property type.</typeparam>
+		/// <typeparam name="TProperty">The type of navigation property being included.</typeparam>
+		/// <param name="query">The includable source query.</param>
+		/// <param name="pathExpression">A lambda expression representing the path to include.</param>
+		/// <returns>A new includable query with the extended include path.</returns>
+		public static IIncludableQueryable<T, TProperty> ThenInclude<T, TPreviousProperty, TProperty>(
+			this IIncludableQueryable<T, TPreviousProperty> query,
+			Expression<Func<TPreviousProperty, TProperty>> pathExpression)
+			where T : class
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (pathExpression == null) throw new ArgumentNullException(nameof(pathExpression));
+
+			var methodCallExpression = Expression.Call(
+				null,
+				QueryExtensionMethodInfos.ThenIncludeReference.MakeGenericMethod(
+					typeof(T),
+					typeof(TPreviousProperty),
+					typeof(TProperty)),
+				query.Expression,
+				Expression.Quote(pathExpression));
+
+			return new IncludableQueryable<T, TProperty>(query, methodCallExpression);
+		}
+
+		/// <summary>
+		/// Specifies additional related objects to include through a previously included collection navigation.
+		/// </summary>
+		/// <typeparam name="T">The root entity type.</typeparam>
+		/// <typeparam name="TPreviousProperty">The element type of the previously included collection property.</typeparam>
+		/// <typeparam name="TProperty">The type of navigation property being included.</typeparam>
+		/// <param name="query">The includable source query.</param>
+		/// <param name="pathExpression">A lambda expression representing the path to include.</param>
+		/// <returns>A new includable query with the extended include path.</returns>
+		public static IIncludableQueryable<T, TProperty> ThenInclude<T, TPreviousProperty, TProperty>(
+			this IIncludableQueryable<T, IEnumerable<TPreviousProperty>> query,
+			Expression<Func<TPreviousProperty, TProperty>> pathExpression)
+			where T : class
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (pathExpression == null) throw new ArgumentNullException(nameof(pathExpression));
+
+			var methodCallExpression = Expression.Call(
+				null,
+				QueryExtensionMethodInfos.ThenIncludeCollection.MakeGenericMethod(
+					typeof(T),
+					typeof(TPreviousProperty),
+					typeof(TProperty)),
+				query.Expression,
+				Expression.Quote(pathExpression));
+
+			return new IncludableQueryable<T, TProperty>(query, methodCallExpression);
 		}
 
 		/// <summary>

@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 namespace Grammophone.DataAccess
 {
 	/// <summary>
-	/// Represents a query for entities of type <typeparamref name="E"/>.
+	/// Represents a query for entities.
 	/// </summary>
-	/// <typeparam name="E">The type of entities being queried.</typeparam>
-	public interface IEntityQuery<E> : IQueryable<E>
+	public interface IEntityQuery : IQueryable
 	{
 		/// <summary>
 		/// The <see cref="IQueryProvider"/> of the native data access system.
@@ -22,31 +21,13 @@ namespace Grammophone.DataAccess
 		/// The domain container which the query pertains to.
 		/// </summary>
 		IDomainContainer DomainContainer { get; }
+	}
 
-		/// <summary>
-		/// Returns a new query where the entities returned will not be cached in the
-		/// container.
-		/// </summary>
-		/// <returns>A new query with NoTracking applied.</returns>
-		IEntityQuery<E> AsNoTracking();
-
-		/// <summary>
-		/// Specifies the related objects to include in the query results.
-		/// </summary>
-		/// <param name="path">
-		/// The dot-separated list of related objects to return in the query results.
-		/// </param>
-		/// <returns>
-		/// A new <see cref="IEntityQuery{E}"/>> with the defined query path.
-		/// </returns>
-		IEntityQuery<E> Include(string path);
-
-		/// <summary>
-		/// Specifies the related objects to include in the query results.
-		/// </summary>
-		/// <typeparam name="P">The type of navigation property being included.</typeparam>
-		/// <param name="pathExpression">A lambda expression representing the path to include.</param>
-		/// <returns>A new <see cref="IQueryable{E}"/> with the defined query path.</returns>
-		IQueryable<E> Include<P>(Expression<Func<E, P>> pathExpression);
+	/// <summary>
+	/// Represents a query for entities of type <typeparamref name="E"/>.
+	/// </summary>
+	/// <typeparam name="E">The type of entities being queried.</typeparam>
+	public interface IEntityQuery<E> : IEntityQuery, IQueryable<E>
+	{
 	}
 }

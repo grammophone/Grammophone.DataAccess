@@ -1461,5 +1461,24 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 			return DefaultTerminalMethodsAdapter;
 		}
+
+		private static IQueryable<T> GetNativeQueryable<T>(IQueryable<T> queryable)
+		{
+			switch (queryable)
+			{
+				case IEntityQuery<T> entityQuery:
+
+					var expression = entityQuery.Provider switch
+					{
+						TranslatingQueryProvider translatingQueryProvider => translatingQueryProvider.TranslateExpression(entityQuery.Expression),
+						_ => entityQuery.Expression
+					};
+
+					return entityQuery.NativeProvider.CreateQuery<T>(expression);
+
+				default:
+					return queryable;
+			}
+		}
 	}
 }

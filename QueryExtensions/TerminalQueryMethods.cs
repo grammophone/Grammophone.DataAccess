@@ -12,10 +12,16 @@ namespace Grammophone.DataAccess.QueryExtensions
 	/// </summary>
 	public static class TerminalQueryMethods
 	{
+		#region Private fields
+
 		/// <summary>
 		/// A fallback adapter when the implementation does not provide one.
 		/// </summary>
 		private static readonly TerminalMethodsAdapter DefaultTerminalMethodsAdapter = new DefaultTerminalMethodsAdapter();
+
+		#endregion
+
+		#region Public methods
 
 		/// <summary>
 		/// Asynchronously determines whether all the elements of a sequence satisfy a condition.
@@ -32,7 +38,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AllAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).AllAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -52,7 +58,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AllAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AllAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -68,7 +74,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).AnyAsync(query);
+			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -86,7 +92,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).AnyAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -104,7 +110,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AnyAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -124,7 +130,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).AnyAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).AnyAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -140,7 +146,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).CountAsync(query);
+			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -158,7 +164,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).CountAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -176,7 +182,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).CountAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -196,7 +202,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).CountAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).CountAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -212,7 +218,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).LongCountAsync(query);
+			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -230,7 +236,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).LongCountAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -248,7 +254,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).LongCountAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -268,7 +274,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).LongCountAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).LongCountAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -285,7 +291,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).FirstAsync(query);
+			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -304,7 +310,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).FirstAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -323,7 +329,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -344,7 +350,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).FirstAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -360,7 +366,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(query);
+			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -378,7 +384,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -396,7 +402,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -416,7 +422,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).FirstOrDefaultAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -430,7 +436,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).SingleAsync(query);
+			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -446,7 +452,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).SingleAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -462,7 +468,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -480,7 +486,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SingleAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -494,7 +500,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(query);
+			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -510,7 +516,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -526,7 +532,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(query, predicate);
+			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query), predicate);
 		}
 
 		/// <summary>
@@ -544,7 +550,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(query, predicate, cancellationToken);
+			return GetTerminalMethodsAdapter(query).SingleOrDefaultAsync(GetNativeQueryable(query), predicate, cancellationToken);
 		}
 
 		/// <summary>
@@ -557,7 +563,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).ToArrayAsync(query);
+			return GetTerminalMethodsAdapter(query).ToArrayAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -572,7 +578,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).ToArrayAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).ToArrayAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -585,7 +591,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).ToListAsync(query);
+			return GetTerminalMethodsAdapter(query).ToListAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -600,7 +606,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).ToListAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).ToListAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -613,7 +619,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).MinAsync(query);
+			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -628,7 +634,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).MinAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -644,7 +650,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MinAsync(query, selector);
+			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query), selector);
 		}
 
 		/// <summary>
@@ -662,7 +668,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MinAsync(query, selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).MinAsync(GetNativeQueryable(query), selector, cancellationToken);
 		}
 
 		/// <summary>
@@ -675,7 +681,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).MaxAsync(query);
+			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -690,7 +696,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetTerminalMethodsAdapter(query).MaxAsync(query, cancellationToken);
+			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query), cancellationToken);
 		}
 
 		/// <summary>
@@ -706,7 +712,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MaxAsync(query, selector);
+			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query), selector);
 		}
 
 		/// <summary>
@@ -724,7 +730,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
-			return GetTerminalMethodsAdapter(query).MaxAsync(query, selector, cancellationToken);
+			return GetTerminalMethodsAdapter(query).MaxAsync(GetNativeQueryable(query), selector, cancellationToken);
 		}
 
 		/// <summary>
@@ -732,7 +738,11 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="int"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<int> SumAsync(this IQueryable<int> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<int> SumAsync(this IQueryable<int> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="int"/> values.
@@ -741,14 +751,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<int> SumAsync(this IQueryable<int> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<int> SumAsync(this IQueryable<int> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="int"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="int"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<int?> SumAsync(this IQueryable<int?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<int?> SumAsync(this IQueryable<int?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="int"/> values.
@@ -757,14 +775,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<int?> SumAsync(this IQueryable<int?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<int?> SumAsync(this IQueryable<int?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="long"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="long"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<long> SumAsync(this IQueryable<long> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<long> SumAsync(this IQueryable<long> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="long"/> values.
@@ -773,14 +799,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<long> SumAsync(this IQueryable<long> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<long> SumAsync(this IQueryable<long> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="long"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="long"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<long?> SumAsync(this IQueryable<long?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<long?> SumAsync(this IQueryable<long?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="long"/> values.
@@ -789,14 +823,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<long?> SumAsync(this IQueryable<long?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<long?> SumAsync(this IQueryable<long?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="float"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="float"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<float> SumAsync(this IQueryable<float> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<float> SumAsync(this IQueryable<float> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="float"/> values.
@@ -805,14 +847,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float> SumAsync(this IQueryable<float> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<float> SumAsync(this IQueryable<float> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="float"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="float"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<float?> SumAsync(this IQueryable<float?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<float?> SumAsync(this IQueryable<float?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="float"/> values.
@@ -821,14 +871,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float?> SumAsync(this IQueryable<float?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<float?> SumAsync(this IQueryable<float?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="double"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="double"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<double> SumAsync(this IQueryable<double> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<double> SumAsync(this IQueryable<double> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="double"/> values.
@@ -837,14 +895,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> SumAsync(this IQueryable<double> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<double> SumAsync(this IQueryable<double> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="double"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="double"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<double?> SumAsync(this IQueryable<double?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<double?> SumAsync(this IQueryable<double?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="double"/> values.
@@ -853,14 +919,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> SumAsync(this IQueryable<double?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<double?> SumAsync(this IQueryable<double?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="decimal"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="decimal"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<decimal> SumAsync(this IQueryable<decimal> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<decimal> SumAsync(this IQueryable<decimal> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of <see cref="decimal"/> values.
@@ -869,14 +943,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal> SumAsync(this IQueryable<decimal> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<decimal> SumAsync(this IQueryable<decimal> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="decimal"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="decimal"/> values to calculate the sum of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
-		public static Task<decimal?> SumAsync(this IQueryable<decimal?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query); }
+		public static Task<decimal?> SumAsync(this IQueryable<decimal?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a sequence of nullable <see cref="decimal"/> values.
@@ -885,7 +967,11 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal?> SumAsync(this IQueryable<decimal?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).SumAsync(query, cancellationToken); }
+		public static Task<decimal?> SumAsync(this IQueryable<decimal?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="int"/> values.
@@ -894,7 +980,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<int> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<int> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="int"/> values.
@@ -905,7 +996,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<int> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<int> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="int"/> values.
@@ -914,7 +1010,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<int?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<int?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="int"/> values.
@@ -925,7 +1026,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<int?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<int?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="long"/> values.
@@ -934,7 +1040,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<long> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<long> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="long"/> values.
@@ -945,7 +1056,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<long> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<long> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="long"/> values.
@@ -954,7 +1070,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<long?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<long?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="long"/> values.
@@ -965,7 +1086,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<long?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<long?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="float"/> values.
@@ -974,7 +1100,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<float> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<float> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="float"/> values.
@@ -985,7 +1116,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<float> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="float"/> values.
@@ -994,7 +1130,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<float?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<float?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="float"/> values.
@@ -1005,7 +1146,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<float?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="double"/> values.
@@ -1014,7 +1160,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<double> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<double> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="double"/> values.
@@ -1025,7 +1176,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<double> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="double"/> values.
@@ -1034,7 +1190,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<double?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<double?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="double"/> values.
@@ -1045,7 +1206,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<double?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="decimal"/> values.
@@ -1054,7 +1220,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<decimal> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<decimal> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of <see cref="decimal"/> values.
@@ -1065,7 +1236,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<decimal> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="decimal"/> values.
@@ -1074,7 +1250,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the sum.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
-		public static Task<decimal?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector); }
+		public static Task<decimal?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the sum of a projected sequence of nullable <see cref="decimal"/> values.
@@ -1085,14 +1266,23 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the sum of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).SumAsync(query, selector, cancellationToken); }
+		public static Task<decimal?> SumAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).SumAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="int"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="int"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<double> AverageAsync(this IQueryable<int> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<double> AverageAsync(this IQueryable<int> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="int"/> values.
@@ -1101,14 +1291,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> AverageAsync(this IQueryable<int> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<double> AverageAsync(this IQueryable<int> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="int"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="int"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<double?> AverageAsync(this IQueryable<int?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<double?> AverageAsync(this IQueryable<int?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="int"/> values.
@@ -1117,14 +1315,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> AverageAsync(this IQueryable<int?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<double?> AverageAsync(this IQueryable<int?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="long"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="long"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<double> AverageAsync(this IQueryable<long> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<double> AverageAsync(this IQueryable<long> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="long"/> values.
@@ -1133,14 +1339,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> AverageAsync(this IQueryable<long> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<double> AverageAsync(this IQueryable<long> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="long"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="long"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<double?> AverageAsync(this IQueryable<long?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<double?> AverageAsync(this IQueryable<long?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="long"/> values.
@@ -1149,14 +1363,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> AverageAsync(this IQueryable<long?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<double?> AverageAsync(this IQueryable<long?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="float"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="float"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<float> AverageAsync(this IQueryable<float> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<float> AverageAsync(this IQueryable<float> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="float"/> values.
@@ -1165,14 +1387,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float> AverageAsync(this IQueryable<float> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<float> AverageAsync(this IQueryable<float> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="float"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="float"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<float?> AverageAsync(this IQueryable<float?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<float?> AverageAsync(this IQueryable<float?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="float"/> values.
@@ -1181,14 +1411,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float?> AverageAsync(this IQueryable<float?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<float?> AverageAsync(this IQueryable<float?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="double"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="double"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<double> AverageAsync(this IQueryable<double> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<double> AverageAsync(this IQueryable<double> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="double"/> values.
@@ -1197,14 +1435,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> AverageAsync(this IQueryable<double> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<double> AverageAsync(this IQueryable<double> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="double"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="double"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<double?> AverageAsync(this IQueryable<double?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<double?> AverageAsync(this IQueryable<double?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="double"/> values.
@@ -1213,14 +1459,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> AverageAsync(this IQueryable<double?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<double?> AverageAsync(this IQueryable<double?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="decimal"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of <see cref="decimal"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<decimal> AverageAsync(this IQueryable<decimal> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<decimal> AverageAsync(this IQueryable<decimal> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of <see cref="decimal"/> values.
@@ -1229,14 +1483,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal> AverageAsync(this IQueryable<decimal> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<decimal> AverageAsync(this IQueryable<decimal> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="decimal"/> values.
 		/// </summary>
 		/// <param name="query">An <see cref="IQueryable{T}"/> of nullable <see cref="decimal"/> values to calculate the average of.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
-		public static Task<decimal?> AverageAsync(this IQueryable<decimal?> query) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query); }
+		public static Task<decimal?> AverageAsync(this IQueryable<decimal?> query)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query));
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a sequence of nullable <see cref="decimal"/> values.
@@ -1245,7 +1507,11 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the values in the sequence.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal?> AverageAsync(this IQueryable<decimal?> query, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); return GetTerminalMethodsAdapter(query).AverageAsync(query, cancellationToken); }
+		public static Task<decimal?> AverageAsync(this IQueryable<decimal?> query, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="int"/> values.
@@ -1254,7 +1520,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="int"/> values.
@@ -1265,7 +1536,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="int"/> values.
@@ -1274,7 +1550,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="int"/> values.
@@ -1285,7 +1566,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, int?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="long"/> values.
@@ -1294,7 +1580,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="long"/> values.
@@ -1305,7 +1596,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="long"/> values.
@@ -1314,7 +1610,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="long"/> values.
@@ -1325,7 +1626,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, long?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="float"/> values.
@@ -1334,7 +1640,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<float> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<float> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="float"/> values.
@@ -1345,7 +1656,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<float> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="float"/> values.
@@ -1354,7 +1670,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<float?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<float?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="float"/> values.
@@ -1365,7 +1686,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<float?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<float?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, float?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="double"/> values.
@@ -1374,7 +1700,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="double"/> values.
@@ -1385,7 +1716,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<double> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="double"/> values.
@@ -1394,7 +1730,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="double"/> values.
@@ -1405,7 +1746,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<double?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, double?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="decimal"/> values.
@@ -1414,7 +1760,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<decimal> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<decimal> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of <see cref="decimal"/> values.
@@ -1425,7 +1776,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<decimal> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="decimal"/> values.
@@ -1434,7 +1790,12 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="query">An <see cref="IQueryable{T}"/> whose elements are projected before calculating the average.</param>
 		/// <param name="selector">A projection function to apply to each element.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
-		public static Task<decimal?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector); }
+		public static Task<decimal?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector);
+		}
 
 		/// <summary>
 		/// Asynchronously computes the average of a projected sequence of nullable <see cref="decimal"/> values.
@@ -1445,7 +1806,16 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the average of the projected values.</returns>
 		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
-		public static Task<decimal?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector, CancellationToken cancellationToken) { if (query == null) throw new ArgumentNullException(nameof(query)); if (selector == null) throw new ArgumentNullException(nameof(selector)); return GetTerminalMethodsAdapter(query).AverageAsync(query, selector, cancellationToken); }
+		public static Task<decimal?> AverageAsync<T>(this IQueryable<T> query, Expression<Func<T, decimal?>> selector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			return GetTerminalMethodsAdapter(query).AverageAsync(GetNativeQueryable(query), selector, cancellationToken);
+		}
+
+		#endregion
+
+		#region Private methods
 
 		private static TerminalMethodsAdapter GetTerminalMethodsAdapter<T>(IQueryable<T> query)
 		{
@@ -1480,5 +1850,8 @@ namespace Grammophone.DataAccess.QueryExtensions
 					return queryable;
 			}
 		}
+
+		#endregion
 	}
 }
+

@@ -25,13 +25,9 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (path == null) throw new ArgumentNullException(nameof(path));
 
-			var methodCallExpression = Expression.Call(
-				null,
-				QueryExtensionMethodInfos.IncludeString.MakeGenericMethod(typeof(T)),
-				query.Expression,
-				Expression.Constant(path));
-
-			return query.Provider.CreateQuery<T>(methodCallExpression);
+			return WrapShapedQuery(
+				query,
+				GetShapingMethodsAdapter(query).Include(QueryOperations.GetNativeQueryable(query), path));
 		}
 
 		/// <summary>
@@ -58,13 +54,17 @@ namespace Grammophone.DataAccess.QueryExtensions
 					"Portable typed Include requires a query originating from a Grammophone entity query.");
 			}
 
-			var methodCallExpression = Expression.Call(
-				null,
-				QueryExtensionMethodInfos.IncludeExpression.MakeGenericMethod(typeof(T), typeof(TProperty)),
-				query.Expression,
-				Expression.Quote(pathExpression));
+			var includePath = NavigationPath.Extract(pathExpression);
+			var includedQuery = WrapShapedQuery(
+				query,
+				GetShapingMethodsAdapter(query).Include(QueryOperations.GetNativeQueryable(query), pathExpression));
 
-			return new IncludableEntityQuery<T, TProperty>(entityQuery, methodCallExpression);
+			if (!(includedQuery is IEntityQuery<T> includedEntityQuery))
+			{
+				throw new DataAccessException("The shaping methods adapter must return an entity query for Include.");
+			}
+
+			return new IncludableEntityQuery<T, TProperty>(includedEntityQuery, includedEntityQuery.Expression, includePath);
 		}
 
 		/// <summary>
@@ -84,16 +84,17 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (pathExpression == null) throw new ArgumentNullException(nameof(pathExpression));
 
-			var methodCallExpression = Expression.Call(
-				null,
-				QueryExtensionMethodInfos.ThenIncludeReference.MakeGenericMethod(
-					typeof(T),
-					typeof(TPreviousProperty),
-					typeof(TProperty)),
-				query.Expression,
-				Expression.Quote(pathExpression));
+			var includePath = $"{query.IncludePath}.{NavigationPath.Extract(pathExpression)}";
+			var includedQuery = WrapShapedQuery(
+				query,
+				GetShapingMethodsAdapter(query).Include(QueryOperations.GetNativeQueryable(query), includePath));
 
-			return new IncludableEntityQuery<T, TProperty>(query, methodCallExpression);
+			if (!(includedQuery is IEntityQuery<T> includedEntityQuery))
+			{
+				throw new DataAccessException("The shaping methods adapter must return an entity query for ThenInclude.");
+			}
+
+			return new IncludableEntityQuery<T, TProperty>(includedEntityQuery, includedEntityQuery.Expression, includePath);
 		}
 
 		/// <summary>
@@ -113,16 +114,47 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (pathExpression == null) throw new ArgumentNullException(nameof(pathExpression));
 
-			var methodCallExpression = Expression.Call(
-				null,
-				QueryExtensionMethodInfos.ThenIncludeCollection.MakeGenericMethod(
-					typeof(T),
-					typeof(TPreviousProperty),
-					typeof(TProperty)),
-				query.Expression,
-				Expression.Quote(pathExpression));
+			var includePath = $"{query.IncludePath}.{NavigationPath.Extract(pathExpression)}";
+			var includedQuery = WrapShapedQuery(
+				query,
+				GetShapingMethodsAdapter(query).Include(QueryOperations.GetNativeQueryable(query), includePath));
 
-			return new IncludableEntityQuery<T, TProperty>(query, methodCallExpression);
+			if (!(includedQuery is IEntityQuery<T> includedEntityQuery))
+			{
+				throw new DataAccessException("The shaping methods adapter must return an entity query for ThenInclude.");
+			}
+
+			return new IncludableEntityQuery<T, TProperty>(includedEntityQuery, includedEntityQuery.Expression, includePath);
+		}
+
+		/// <summary>
+		/// Specifies additional related objects to include through a previously included collection navigation.
+		/// </summary>
+		/// <typeparam name="T">The root entity type.</typeparam>
+		/// <typeparam name="TPreviousProperty">The element type of the previously included collection property.</typeparam>
+		/// <typeparam name="TProperty">The type of navigation property being included.</typeparam>
+		/// <param name="query">The includable source query.</param>
+		/// <param name="pathExpression">A lambda expression representing the path to include.</param>
+		/// <returns>A new includable query with the extended include path.</returns>
+		public static IIncludableEntityQuery<T, TProperty> ThenInclude<T, TPreviousProperty, TProperty>(
+			this IIncludableEntityQuery<T, ICollection<TPreviousProperty>> query,
+			Expression<Func<TPreviousProperty, TProperty>> pathExpression)
+			where T : class
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (pathExpression == null) throw new ArgumentNullException(nameof(pathExpression));
+
+			var includePath = $"{query.IncludePath}.{NavigationPath.Extract(pathExpression)}";
+			var includedQuery = WrapShapedQuery(
+				query,
+				GetShapingMethodsAdapter(query).Include(QueryOperations.GetNativeQueryable(query), includePath));
+
+			if (!(includedQuery is IEntityQuery<T> includedEntityQuery))
+			{
+				throw new DataAccessException("The shaping methods adapter must return an entity query for ThenInclude.");
+			}
+
+			return new IncludableEntityQuery<T, TProperty>(includedEntityQuery, includedEntityQuery.Expression, includePath);
 		}
 
 		/// <summary>
@@ -136,12 +168,41 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			var methodCallExpression = Expression.Call(
-				null,
-				QueryExtensionMethodInfos.AsNoTracking.MakeGenericMethod(typeof(T)),
-				query.Expression);
+			return WrapShapedQuery(
+				query,
+				GetShapingMethodsAdapter(query).AsNoTracking(QueryOperations.GetNativeQueryable(query)));
+		}
 
-			return query.Provider.CreateQuery<T>(methodCallExpression);
+		#endregion
+
+		#region Private methods
+
+		private static ShapingMethodsAdapter GetShapingMethodsAdapter<T>(IQueryable<T> query)
+		{
+			if (query is IEntityQuery<T> entityQuery)
+			{
+				var queryTranslator = entityQuery.DomainContainer.TryGetQueryTranslator();
+
+				if (queryTranslator != null)
+				{
+					return queryTranslator.ShapingMethodsAdapter;
+				}
+			}
+
+			return new ShapingMethodsAdapter();
+		}
+
+		private static IQueryable<T> WrapShapedQuery<T>(IQueryable<T> sourceQuery, IQueryable<T> shapedQuery)
+		{
+			if (sourceQuery == null) throw new ArgumentNullException(nameof(sourceQuery));
+			if (shapedQuery == null) throw new ArgumentNullException(nameof(shapedQuery));
+
+			if (sourceQuery is IEntityQuery<T>)
+			{
+				return sourceQuery.Provider.CreateQuery<T>(shapedQuery.Expression);
+			}
+
+			return shapedQuery;
 		}
 
 		#endregion

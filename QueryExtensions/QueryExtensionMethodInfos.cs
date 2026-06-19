@@ -36,12 +36,17 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <summary>
 		/// Method information for the reference overload of ThenInclude.
 		/// </summary>
-		public static readonly MethodInfo ThenIncludeReference = GetThenIncludeMethodInfo(false);
+		public static readonly MethodInfo ThenIncludeReference = GetThenIncludeMethodInfo(null);
 
 		/// <summary>
 		/// Method information for the collection overload of ThenInclude.
 		/// </summary>
-		public static readonly MethodInfo ThenIncludeCollection = GetThenIncludeMethodInfo(true);
+		public static readonly MethodInfo ThenIncludeCollection = GetThenIncludeMethodInfo(typeof(IEnumerable<>));
+
+		/// <summary>
+		/// Method information for the collection overload of ThenInclude using <see cref="ICollection{T}"/>.
+		/// </summary>
+		public static readonly MethodInfo ThenIncludeICollection = GetThenIncludeMethodInfo(typeof(ICollection<>));
 
 		/// <summary>
 		/// Method information for <see cref="QueryExtensions.AsNoTracking{T}(IQueryable{T})"/>.
@@ -56,7 +61,7 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 		#region Private methods
 
-		private static MethodInfo GetThenIncludeMethodInfo(bool collectionOverload)
+		private static MethodInfo GetThenIncludeMethodInfo(Type includedTypeDefinition)
 		{
 			foreach (var methodInfo in typeof(QueryExtensions).GetMethods(BindingFlags.Public | BindingFlags.Static))
 			{
@@ -72,9 +77,9 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 				var includedType = firstParameterType.GetGenericArguments()[1];
 
-				bool isCollectionOverload = includedType.IsGenericType && includedType.GetGenericTypeDefinition() == typeof(IEnumerable<>);
+				var actualIncludedTypeDefinition = includedType.IsGenericType ? includedType.GetGenericTypeDefinition() : null;
 
-				if (isCollectionOverload == collectionOverload) return methodInfo;
+				if (actualIncludedTypeDefinition == includedTypeDefinition) return methodInfo;
 			}
 
 			throw new InvalidOperationException("The requested ThenInclude overload was not found.");

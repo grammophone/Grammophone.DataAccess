@@ -132,7 +132,8 @@ namespace Grammophone.DataAccess
 			var methodInfoKey = GetMethodInfoKey(methodInfo);
 
 			return methodInfoKey == QueryExtensionMethodInfos.ThenIncludeReference
-				|| methodInfoKey == QueryExtensionMethodInfos.ThenIncludeCollection;
+				|| methodInfoKey == QueryExtensionMethodInfos.ThenIncludeCollection
+				|| methodInfoKey == QueryExtensionMethodInfos.ThenIncludeICollection;
 		}
 
 		private static MethodInfo GetMethodInfoKey(MethodInfo methodInfo)

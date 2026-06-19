@@ -25,14 +25,17 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// Create.
 		/// </summary>
 		/// <param name="sourceQuery">The source entity query.</param>
-		/// <param name="expression">The portable include expression.</param>
-		public IncludableEntityQuery(IEntityQuery<TEntity> sourceQuery, Expression expression)
+		/// <param name="expression">The include query expression.</param>
+		/// <param name="includePath">The dot-separated include path.</param>
+		public IncludableEntityQuery(IEntityQuery<TEntity> sourceQuery, Expression expression, string includePath)
 		{
 			if (sourceQuery == null) throw new ArgumentNullException(nameof(sourceQuery));
 			if (expression == null) throw new ArgumentNullException(nameof(expression));
+			if (includePath == null) throw new ArgumentNullException(nameof(includePath));
 
 			this.sourceQuery = sourceQuery;
 			this.Expression = expression;
+			this.IncludePath = includePath;
 		}
 
 		#endregion
@@ -44,6 +47,9 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 		/// <inheritdoc/>
 		public IDomainContainer DomainContainer => sourceQuery.DomainContainer;
+
+		/// <inheritdoc/>
+		public string IncludePath { get; }
 
 		#endregion
 

@@ -7,5 +7,9 @@ namespace Grammophone.DataAccess.QueryExtensions
 	/// <typeparam name="TProperty">The last included property type.</typeparam>
 	public interface IIncludableEntityQuery<TEntity, TProperty> : IEntityQuery<TEntity>
 	{
+		/// <summary>
+		/// The dot-separated include path represented by this query.
+		/// </summary>
+		string IncludePath { get; }
 	}
 }

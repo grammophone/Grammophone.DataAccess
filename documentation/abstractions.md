@@ -18,7 +18,11 @@ public interface IMusicDomainContainer : IDomainContainer
 }
 ```
 
-`IDomainContainer.Create<T>()` creates a new entity instance. Implementations may create proxy instances when supported. EF6 uses proxy creation through `DbSet<T>.Create()`. EF Core uses `CreateProxy<T>()` when proxy support is configured.
+`IDomainContainer.Create<T>()` creates a new entity instance. Implementations may create proxy instances when supported by the underlying provider.
+
+For effective proxy creation, every mapped property must be `virtual` without exception, including scalar properties, key properties, reference navigations and collection navigations. This requirement is especially important when an implementation uses change-tracking proxies. Collection navigation implementations may also need to support change notifications, depending on the provider.
+
+Application code should call `IDomainContainer.Create<T>()` or `IEntitySet<T>.Create()` rather than provider-specific factory APIs.
 
 ## Entity Sets
 

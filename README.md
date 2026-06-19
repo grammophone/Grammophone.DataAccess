@@ -1,115 +1,75 @@
 # Grammophone.DataAccess
-This .NET Standard 2.0 library abstracts data access and reinforces it with higher-level functionality.
 
-At the center of the abstract contract is `IDomainContainer`.
-This abstracts the repository class for communicating with the data store, which typically is
-handled by `DbContext` descendants in Entity Framework or NHibernate's `ISession`.
+`Grammophone.DataAccess` is a .NET Standard 2.0 contract library for building provider-independent data access layers over ORM-style unit-of-work implementations.
 
-Most properties and methods of `IDomainContainer` follow what is common in such frameworks.
-In our interfaces derived from `IDomainContainer` which define the data repository, we expect to have
-properties of type `IEntitySet<T>` or even Entity Framework's `IDbSet<T>`, depending on the level of 
-framework abstraction we desire. 
-There is one exception to the similarities: Transactions are leveraged to allow nesting of units of work. Let's see an example.
+The central abstraction is `IDomainContainer`. It represents the active data access context, similar in role to Entity Framework `DbContext` or NHibernate `ISession`, while exposing provider-neutral operations for entity sets, tracking, explicit loading, transactions, exception normalization and query execution.
 
-```C#
-private void AddAlbum(Album album)
+## Main Features
+
+- `IDomainContainer` abstracts the unit of work and repository root.
+- `IEntitySet<T>` abstracts add, attach, remove, find and query access to entities.
+- `IEntityQuery<T>` extends `IOrderedQueryable<T>` so standard LINQ composition remains available.
+- `IEntityEntry<T>`, `IPropertyEntry<T, P>`, `IReferenceEntry<T, P>` and `ICollectionEntry<T, I>` abstract change tracking and explicit loading.
+- `ITransaction` supports nested transaction scopes over implementations that may or may not have native nested transactions.
+- `DataAccessException` and descendants normalize provider exceptions such as unique and referential constraint violations.
+- `Grammophone.DataAccess.QueryExtensions` provides portable query extensions such as `Include`, `ThenInclude`, `AsNoTracking`, async terminal methods and query functions.
+- Query translation infrastructure maps portable method calls to provider-native APIs while preserving normal `IQueryable<T>` usage.
+
+## Query Example
+
+Given a domain contract such as:
+
+```csharp
+public interface IMusicDomainContainer : IDomainContainer
 {
-  if (album == null) throw new ArgumentNullException(nameof(album));
-
-  using (var transaction = this.DomainContainer.BeginTransaction())
-  {
-    bool albumAlreadyAdded =
-      this.DomainContainer.Albums.Any(
-        a => a.ArtistID == album.artistID && album.Name == a.Name);
-
-    if (albumAlreadyAdded)
-      throw new LogicException(
-        $"The album '{album.Name}' has already been added to the artist's albums.");
-
-    this.DomainContainer.Albums.Add(album);
-
-    // The following is optional; it is provided for easy transition
-    // of existing code of frameworks which require it.
-    // this.DomainContainer.Save();
-
-    transaction.Commit();
-  }
+	IEntitySet<Artist> Artists { get; }
+	IEntitySet<Album> Albums { get; }
+	IEntitySet<Track> Tracks { get; }
+	IEntitySet<Genre> Genres { get; }
 }
 ```
 
-The `DomainContainer` property is supposed to be our data repository interface. Use any
-preferred dependency injection mechanism to provide your concrete implementation.
-The `Commit` method of the `ITransaction` we obtained via `BeginTransaction` method auto-saves any entities if needed
-before committing the changes. Else it only commits the changes, falling back to the behavior of existing
-frameworks. This permits building higher blocks of transactional works around `ITransaction` interface alone.
-Thus we can define a method which uses the `AddAlbum` method several times but running in a single transaction:
+portable query code can use standard LINQ and Grammophone query extensions:
 
-```C#
-private void AddAlbumsToNewGenre(string genreName, IEnumerable<Album> albums)
+```csharp
+using Grammophone.DataAccess.QueryExtensions;
+
+var albums = await domainContainer.Albums
+	.Include(album => album.Tracks)
+	.ThenInclude(track => track.Genre)
+	.AsNoTracking()
+	.Where(album => QueryFunctions.Like(album.Name, "%Blue%"))
+	.ToListAsync();
+```
+
+The application code does not import Entity Framework or EF Core query-extension namespaces. The provider implementation translates the portable methods to native operations.
+
+## Transactions
+
+`IDomainContainer.BeginTransaction()` returns an `ITransaction`. Nested transactions compose through commit/pass/rollback votes. The implementation may use real commits or deferred commits depending on `TransactionMode`.
+
+```csharp
+using (var transaction = domainContainer.BeginTransaction())
 {
-  if (genreName == null) throw new ArgumentNullException(nameof(genreName));
-  if (albums == null) throw new ArgumentNullException(nameof(albums));
+	var genre = domainContainer.Create<Genre>();
+	genre.Name = "Progressive Tests";
 
-  using (var transaction = this.DomainContainer.Begintransaction())
-  {
-    bool genreAlreadyExists = this.DomainContainer.Genres.Any(g => g.Name == genreName);
+	domainContainer.Genres.Add(genre);
 
-    if (genreAlreadyExists)
-      throw new LogicException($"The genre `{genreName}' already exists.");
-
-    var genre = this.DomainContainer.Genres.Create();
-    this.DomainContainer.Genres.Add(genre);
-
-    genre.Name = genreName;
-
-    foreach (var album in albums)
-    {
-      AddAlbum(album);
-      album.Genre = genre;
-    }
-
-    transaction.Commit();
-  }
+	transaction.Commit();
 }
 ```
 
-The method `AddAlbumsToNewGenre` will run in a single transaction. If any of the calls to `AddAlbum` in it
-raises an exception, the whole unit of work will roll back.
+## Documentation
 
-Concrete implementations may provide any of the following two variations for implementing nesting transactions,
-which are defined in the enumeration `TransactionMode` and reported in `IDomainContainer.TransactionMode` property:
+- [Abstractions](documentation/abstractions.md)
+- [Query extensions and translation](documentation/query-extensions.md)
+- [Nested transactions](documentation/transactions.md)
+- [Exception normalization](documentation/exception-normalization.md)
 
-<table>
-<tbody>
-<tr>
-<td>
-<strong>TransactionMode.Real</strong>
-</td>
-<td>
-Actual underlying 'Commit' and 'SaveChanges' are invoked in corresponding methods.
-This causes generated IDs to be obtained early when the transaction is still underway.
-</td>
-</tr>
-<tr>
-<td>
-<strong>TransactionMode.Deferred</strong>
-</td>
-<td>
-Within transactions, 'Commit' and 'SaveChanges' methods are deferred until a top-level transaction commits.
-This means that database-generated columns such as auto-increments are not updated until after the final commit.
-This behavior is aimed for transient fault environments to enable automatic retries, such as in the cloud.
-</td>
-</tr>
-</tbody>
-</table>
+## Implementations
 
-The implementation for Entity Framework,
-[Grammophone.DataAccess.EntityFramework](https://github.com/grammophone/Grammophone.DataAccess.EntityFramework),
-supports both scenarios by supplying the `TransactionMode` in the corresponding constructors.
+- `Grammophone.DataAccess.EntityFramework` implements the contracts for Entity Framework 6.
+- `Grammophone.DataAccess.EntityFrameworkCore` implements the contracts for Entity Framework Core 8.
 
-When an error in the data store occurs, the exceptions are normalized to be derived from `DataAccessException`.
-The descendants `IntegrityViolationException`, `UniqueConstraintViolationException` and
-`ReferentialConstraintViolationException` permit universal handling of errors in
-different types of data stores.
-
-This library has no dependencies.
+Both implementations can expose fully provider-neutral `IEntitySet<T>` properties through domain container adapters.

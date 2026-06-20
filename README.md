@@ -2,6 +2,8 @@
 
 `Grammophone.DataAccess` is a .NET Standard 2.0 contract library for building provider-independent data access layers over ORM-style unit-of-work implementations.
 
+It is a standalone data access abstraction library. It is also used as the data access foundation for `Grammophone.Domos` components.
+
 The central abstraction is `IDomainContainer`. It represents the active data access context, similar in role to Entity Framework `DbContext` or NHibernate `ISession`, while exposing provider-neutral operations for entity sets, tracking, explicit loading, transactions, exception normalization and query execution.
 
 ## Main Features
@@ -66,6 +68,8 @@ using (var transaction = domainContainer.BeginTransaction())
 - [Query extensions and translation](documentation/query-extensions.md)
 - [Nested transactions](documentation/transactions.md)
 - [Exception normalization](documentation/exception-normalization.md)
+- [Entity listeners](documentation/entity-listeners.md)
+- [Extension points for higher layers](documentation/extension-points.md)
 
 ## Implementations
 

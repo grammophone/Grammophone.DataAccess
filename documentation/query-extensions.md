@@ -73,6 +73,31 @@ var albums = domainContainer.Albums
 
 The functions have no in-memory implementation. They are intended to appear inside expression trees and be translated by a provider implementation.
 
+## Set-Based Mutations
+
+Portable set-based mutation methods are available for providers that support them:
+
+```csharp
+var deleted = await domainContainer.Tracks
+	.Where(t => t.Album.Name == "Blue Integration")
+	.ExecuteDeleteAsync();
+```
+
+`ExecuteDelete` and `ExecuteDeleteAsync` execute immediately in the database. They do not materialize the selected entities, do not mark individual entities as deleted through the change tracker and do not synchronize entities already tracked by the active domain container.
+
+Portable set-based updates follow the EF Core setter-call style:
+
+```csharp
+var updated = await domainContainer.Tracks
+	.Where(t => t.Album.Name == "Blue Integration")
+	.ExecuteUpdateAsync(setters => setters
+		.SetProperty(t => t.DurationSeconds, t => t.DurationSeconds + 5));
+```
+
+`ExecuteUpdate` and `ExecuteUpdateAsync` have the same set-based semantics. They bypass change tracking and do not update any already-loaded entity instances in memory.
+
+Provider support differs. EF Core 7+ supports these operations directly. EF6 support is available through the optional `Grammophone.DataAccess.EntityFramework.Plus` integration.
+
 ## Translation Components
 
 The base library provides reusable translation mechanics:
@@ -84,6 +109,7 @@ The base library provides reusable translation mechanics:
 - `IncludeChainNormalizerVisitor` turns portable include chains into string include paths.
 - `TerminalMethodsAdapter` adapts async terminal execution.
 - `ShapingMethodsAdapter` adapts executable non-terminal shaping operations such as `Include` and `AsNoTracking`.
+- `SetOperationMethodsAdapter` adapts set-based mutation methods such as `ExecuteDelete` and `ExecuteUpdate`.
 - `QueryOperations` prepares native queryables and translated predicate/selector expressions for adapters.
 
 Provider implementers should not reimplement expression traversal or terminal dispatch. They should provide mappings and adapters.

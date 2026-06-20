@@ -18,6 +18,10 @@ namespace Grammophone.DataAccess
 		/// <typeparam name="T">The entity type.</typeparam>
 		/// <param name="nativeQuery">The native query selecting the entities to delete.</param>
 		/// <returns>The number of affected rows.</returns>
+		/// <remarks>
+		/// This is a set-based database operation. It does not materialize the selected entities, does not use the change tracker
+		/// to mark individual entities as deleted and does not synchronize entities already tracked by the active domain container.
+		/// </remarks>
 		public virtual int ExecuteDelete<T>(IQueryable<T> nativeQuery)
 			where T : class
 		{
@@ -31,6 +35,10 @@ namespace Grammophone.DataAccess
 		/// <param name="nativeQuery">The native query selecting the entities to delete.</param>
 		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
 		/// <returns>A task whose result is the number of affected rows.</returns>
+		/// <remarks>
+		/// This is a set-based database operation. It does not materialize the selected entities, does not use the change tracker
+		/// to mark individual entities as deleted and does not synchronize entities already tracked by the active domain container.
+		/// </remarks>
 		public virtual Task<int> ExecuteDeleteAsync<T>(
 			IQueryable<T> nativeQuery,
 			CancellationToken cancellationToken = default(CancellationToken))

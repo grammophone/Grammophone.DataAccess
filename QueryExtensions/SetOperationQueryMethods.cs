@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -58,6 +59,59 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 			return GetSetOperationMethodsAdapter(query).ExecuteDeleteAsync(
 				QueryOperations.GetNativeQueryable(query),
+				cancellationToken);
+		}
+
+		/// <summary>
+		/// Updates all database rows selected by the query without materializing the corresponding entities.
+		/// </summary>
+		/// <typeparam name="T">The entity type.</typeparam>
+		/// <param name="query">The query selecting the entities to update.</param>
+		/// <param name="setPropertyCalls">The property update specification.</param>
+		/// <returns>The number of affected rows.</returns>
+		/// <remarks>
+		/// This operation executes immediately as a set-based database operation. It does not materialize the selected entities,
+		/// does not use the change tracker to update individual entities and does not synchronize entities already tracked
+		/// by the active domain container.
+		/// </remarks>
+		public static int ExecuteUpdate<T>(
+			this IQueryable<T> query,
+			Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>> setPropertyCalls)
+			where T : class
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (setPropertyCalls == null) throw new ArgumentNullException(nameof(setPropertyCalls));
+
+			return GetSetOperationMethodsAdapter(query).ExecuteUpdate(
+				QueryOperations.GetNativeQueryable(query),
+				QueryOperations.TranslateExpression(query, setPropertyCalls));
+		}
+
+		/// <summary>
+		/// Asynchronously updates all database rows selected by the query without materializing the corresponding entities.
+		/// </summary>
+		/// <typeparam name="T">The entity type.</typeparam>
+		/// <param name="query">The query selecting the entities to update.</param>
+		/// <param name="setPropertyCalls">The property update specification.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>A task whose result is the number of affected rows.</returns>
+		/// <remarks>
+		/// This operation executes immediately as a set-based database operation. It does not materialize the selected entities,
+		/// does not use the change tracker to update individual entities and does not synchronize entities already tracked
+		/// by the active domain container.
+		/// </remarks>
+		public static Task<int> ExecuteUpdateAsync<T>(
+			this IQueryable<T> query,
+			Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>> setPropertyCalls,
+			CancellationToken cancellationToken = default(CancellationToken))
+			where T : class
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (setPropertyCalls == null) throw new ArgumentNullException(nameof(setPropertyCalls));
+
+			return GetSetOperationMethodsAdapter(query).ExecuteUpdateAsync(
+				QueryOperations.GetNativeQueryable(query),
+				QueryOperations.TranslateExpression(query, setPropertyCalls),
 				cancellationToken);
 		}
 

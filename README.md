@@ -70,6 +70,7 @@ using (var transaction = domainContainer.BeginTransaction())
 - [Nested transactions](documentation/transactions.md)
 - [Exception normalization](documentation/exception-normalization.md)
 - [Entity listeners](documentation/entity-listeners.md)
+- [ObservableHashSet](documentation/observable-hash-set.md)
 - [Extension points for higher layers](documentation/extension-points.md)
 
 ## Implementations

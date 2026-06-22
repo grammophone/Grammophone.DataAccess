@@ -15,12 +15,10 @@ namespace Grammophone.DataAccess.Collections
 	/// in the domain model.
 	/// </summary>
 	/// <remarks>
-	/// This provides the performance characteristics of <see cref="HashSet{T}"/> (O(1) lookups, 
-	/// no duplicates) while enabling immediate collection change detection.
-	/// Use this in entity collection navigations when using UseChangeTrackingProxies()
-	/// or notification entities.
-	/// 
-	/// Designed to maintain maximum POCO compatibility and serialization support.
+	/// This provides the set semantics and lookup characteristics of <see cref="HashSet{T}"/>
+	/// while enabling immediate collection change detection.
+	/// Use this in entity collection navigations when notification-based change tracking is required,
+	/// such as with Entity Framework Core change-tracking proxies.
 	/// </remarks>
 	[Serializable]
 	public class ObservableHashSet<T> : HashSet<T>, INotifyCollectionChanged, INotifyPropertyChanged, ISet<T>
@@ -60,13 +58,13 @@ namespace Grammophone.DataAccess.Collections
 		public event NotifyCollectionChangedEventHandler CollectionChanged;
 
 		/// <summary>
-		/// Occurs when a property value changes (primarily Count).
+		/// Occurs when a property value changes.
 		/// </summary>
 		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
-		/// Raises the CollectionChanged event.
+		/// Raises the <see cref="CollectionChanged"/> event and notifies that <see cref="HashSet{T}.Count"/> changed.
 		/// </summary>
 		/// <param name="e">The event arguments.</param>
 		protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)

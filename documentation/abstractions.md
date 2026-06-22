@@ -24,6 +24,8 @@ For effective proxy creation, every mapped property must be `virtual` without ex
 
 Application code should call `IDomainContainer.Create<T>()` or `IEntitySet<T>.Create()` rather than provider-specific factory APIs.
 
+When notification-capable set semantics are needed for collection navigations, `ObservableHashSet<T>` can be used as a provider-neutral alternative to EF Core-specific observable set types. See [ObservableHashSet](observable-hash-set.md).
+
 ## Entity Sets
 
 `IEntitySet<T>` combines entity-set operations with `IEntityQuery<T>`:

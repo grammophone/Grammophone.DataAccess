@@ -56,6 +56,32 @@ namespace Grammophone.DataAccess
 			return node;
 		}
 
+		/// <inheritdoc/>
+		protected override Expression VisitConstant(ConstantExpression node)
+		{
+			if (node == null) throw new ArgumentNullException(nameof(node));
+
+			if (node.Value is IEntityQuery entityQuery)
+			{
+				return entityQuery.Expression;
+			}
+
+			return base.VisitConstant(node);
+		}
+
+		/// <inheritdoc/>
+		protected override Expression VisitMember(MemberExpression node)
+		{
+			if (node == null) throw new ArgumentNullException(nameof(node));
+
+			if (typeof(IQueryable).IsAssignableFrom(node.Type) && TryEvaluate(node, out var value) && value is IEntityQuery entityQuery)
+			{
+				return entityQuery.Expression;
+			}
+
+			return base.VisitMember(node);
+		}
+
 		#endregion
 
 		#region Private methods
@@ -89,6 +115,22 @@ namespace Grammophone.DataAccess
 			methodMapping = null;
 
 			return false;
+		}
+
+		private static bool TryEvaluate(Expression expression, out object value)
+		{
+			try
+			{
+				value = Expression.Lambda<Func<object>>(Expression.Convert(expression, typeof(object))).Compile()();
+
+				return true;
+			}
+			catch
+			{
+				value = null;
+
+				return false;
+			}
 		}
 
 		private static bool AreEquivalent(MethodInfo x, MethodInfo y)

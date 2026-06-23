@@ -255,6 +255,21 @@ namespace Grammophone.DataAccess.QueryExtensions
 			throw CreateNotSupportedException(nameof(AddYears));
 		}
 
+		/// <summary>
+		/// Creates a date/time value from date and time parts.
+		/// </summary>
+		/// <param name="year">The year part of the date.</param>
+		/// <param name="month">The month part of the date.</param>
+		/// <param name="day">The day part of the date.</param>
+		/// <param name="hour">The hour part of the time.</param>
+		/// <param name="minute">The minute part of the time.</param>
+		/// <param name="second">The seconds part of the time.</param>
+		/// <returns>The created date/time value.</returns>
+		public static DateTime? CreateDateTime(int? year, int? month, int? day, int? hour, int? minute, double? second)
+		{
+			throw CreateNotSupportedException(nameof(CreateDateTime));
+		}
+
 		#endregion
 
 		#region Private methods

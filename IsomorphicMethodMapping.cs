@@ -45,7 +45,7 @@ namespace Grammophone.DataAccess
 		/// <summary>
 		/// Translates method call expressions of <see cref="MethodMapping.PortableMethodInfo"/> into <see cref="NativeMethodInfo"/>.
 		/// </summary>
-		public override MethodCallExpression MapMethodCallExpression(MethodInfo originalMethodInfo, IEnumerable<Expression> arguments)
+		public override Expression MapMethodCallExpression(MethodInfo originalMethodInfo, IEnumerable<Expression> arguments)
 		{
 			if (originalMethodInfo == null) throw new ArgumentNullException(nameof(originalMethodInfo));
 			if (arguments == null) throw new ArgumentNullException(nameof(arguments));

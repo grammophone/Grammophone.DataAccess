@@ -18,9 +18,9 @@ namespace Grammophone.DataAccess
 	/// </param>
 	/// <param name="arguments">The collection of argument expression arguments passed to the method expression.</param>
 	/// <returns>
-	/// Returns the transformed method call expression.
+	/// Returns the transformed expression.
 	/// </returns>
-	public delegate MethodCallExpression MethodExpressionMapper(
+	public delegate Expression MethodExpressionMapper(
 		MethodInfo originalMethodInfo,
 		IEnumerable<Expression> arguments);
 
@@ -58,7 +58,7 @@ namespace Grammophone.DataAccess
 		/// <summary>
 		/// Implements the method call expression mapping via <see cref="MethodExpressionMapper"/>.
 		/// </summary>
-		public override MethodCallExpression MapMethodCallExpression(MethodInfo originalMethodInfo, IEnumerable<Expression> arguments) 
+		public override Expression MapMethodCallExpression(MethodInfo originalMethodInfo, IEnumerable<Expression> arguments) 
 			=> this.MethodExpressionMapper(originalMethodInfo, arguments);
 	}
 }

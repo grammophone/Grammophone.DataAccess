@@ -10,7 +10,7 @@ namespace Grammophone.DataAccess
 	/// Base specification for mapping a portable method expression to a native expression which a provider can interpret.
 	/// </summary>
 	/// <remarks>
-	/// Implementations must return a method call expression whose type is compatible with the portable method call being replaced.
+	/// Implementations must return an expression whose type is compatible with the portable method call being replaced.
 	/// This preserves the type and shape of containing expressions, such as predicate and selector lambda expressions.
 	/// </remarks>
 	public abstract class MethodMapping
@@ -48,8 +48,8 @@ namespace Grammophone.DataAccess
 		/// </param>
 		/// <param name="arguments">The collection of argument expression arguments passed to the method expression.</param>
 		/// <returns>
-		/// Returns the transformed method call expression.
+		/// Returns the transformed expression.
 		/// </returns>
-		public abstract MethodCallExpression MapMethodCallExpression(MethodInfo originalMethodInfo, IEnumerable<Expression> arguments);
+		public abstract Expression MapMethodCallExpression(MethodInfo originalMethodInfo, IEnumerable<Expression> arguments);
 	}
 }

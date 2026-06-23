@@ -88,6 +88,17 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <summary>Method information for <see cref="QueryFunctions.AddYears(DateTime?, int?)"/>.</summary>
 		public static readonly MethodInfo AddYears = GetDateTimeAdd(nameof(QueryFunctions.AddYears));
 
+		/// <summary>Method information for <see cref="QueryFunctions.CreateDateTime(int?, int?, int?, int?, int?, double?)"/>.</summary>
+		public static readonly MethodInfo CreateDateTime = MethodInfoCatalog.GetMethodInfo(
+			typeof(QueryFunctions),
+			nameof(QueryFunctions.CreateDateTime),
+			typeof(int?),
+			typeof(int?),
+			typeof(int?),
+			typeof(int?),
+			typeof(int?),
+			typeof(double?));
+
 		#endregion
 
 		#region Private methods

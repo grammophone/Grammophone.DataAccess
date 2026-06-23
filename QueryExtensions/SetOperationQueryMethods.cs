@@ -35,7 +35,9 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetSetOperationMethodsAdapter(query).ExecuteDelete(QueryOperations.GetNativeQueryable(query));
+			return GetSetOperationMethodsAdapter(query, out var domainContainer).ExecuteDelete(
+				domainContainer,
+				QueryOperations.GetNativeQueryable(query));
 		}
 
 		/// <summary>
@@ -57,7 +59,8 @@ namespace Grammophone.DataAccess.QueryExtensions
 		{
 			if (query == null) throw new ArgumentNullException(nameof(query));
 
-			return GetSetOperationMethodsAdapter(query).ExecuteDeleteAsync(
+			return GetSetOperationMethodsAdapter(query, out var domainContainer).ExecuteDeleteAsync(
+				domainContainer,
 				QueryOperations.GetNativeQueryable(query),
 				cancellationToken);
 		}
@@ -82,7 +85,8 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (setPropertyCalls == null) throw new ArgumentNullException(nameof(setPropertyCalls));
 
-			return GetSetOperationMethodsAdapter(query).ExecuteUpdate(
+			return GetSetOperationMethodsAdapter(query, out var domainContainer).ExecuteUpdate(
+				domainContainer,
 				QueryOperations.GetNativeQueryable(query),
 				QueryOperations.TranslateExpression(query, setPropertyCalls));
 		}
@@ -109,7 +113,8 @@ namespace Grammophone.DataAccess.QueryExtensions
 			if (query == null) throw new ArgumentNullException(nameof(query));
 			if (setPropertyCalls == null) throw new ArgumentNullException(nameof(setPropertyCalls));
 
-			return GetSetOperationMethodsAdapter(query).ExecuteUpdateAsync(
+			return GetSetOperationMethodsAdapter(query, out var domainContainer).ExecuteUpdateAsync(
+				domainContainer,
 				QueryOperations.GetNativeQueryable(query),
 				QueryOperations.TranslateExpression(query, setPropertyCalls),
 				cancellationToken);
@@ -119,16 +124,22 @@ namespace Grammophone.DataAccess.QueryExtensions
 
 		#region Private methods
 
-		private static SetOperationMethodsAdapter GetSetOperationMethodsAdapter<T>(IQueryable<T> query)
+		private static SetOperationMethodsAdapter GetSetOperationMethodsAdapter<T>(IQueryable<T> query, out IDomainContainer domainContainer)
 		{
 			if (query is IEntityQuery<T> entityQuery)
 			{
-				var queryTranslator = entityQuery.DomainContainer.TryGetQueryTranslator();
+				domainContainer = entityQuery.DomainContainer;
+
+				var queryTranslator = domainContainer.TryGetQueryTranslator();
 
 				if (queryTranslator != null)
 				{
 					return queryTranslator.SetOperationMethodsAdapter;
 				}
+			}
+			else
+			{
+				domainContainer = null;
 			}
 
 			return DefaultSetOperationMethodsAdapter;

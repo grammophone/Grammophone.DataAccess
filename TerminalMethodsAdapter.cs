@@ -424,6 +424,38 @@ namespace Grammophone.DataAccess
 		public abstract Task<List<T>> ToListAsync<T>(IQueryable<T> query, CancellationToken cancellationToken);
 
 		/// <summary>
+		/// Asynchronously creates a <see cref="Dictionary{TKey, TValue}"/> from a query according to a specified key selector function.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> to create a dictionary from.</param>
+		/// <param name="keySelector">A function to extract a key from each element.</param>
+		/// <returns>
+		/// A task that represents the asynchronous operation.
+		/// The task result contains a <see cref="Dictionary{TKey, TValue}"/> that contains values of type <typeparamref name="T"/> selected from the input sequence.
+		/// </returns>
+		/// <exception cref="ArgumentNullException"><paramref name="query"/> or <paramref name="keySelector"/> is null.</exception>
+		/// <exception cref="ArgumentException"><paramref name="keySelector"/> produces duplicate keys for two elements.</exception>
+		public abstract Task<Dictionary<TKey, T>> ToDictionaryAsync<T, TKey>(IQueryable<T> query, Func<T, TKey> keySelector);
+
+		/// <summary>
+		/// Asynchronously creates a <see cref="Dictionary{TKey, TValue}"/> from a query according to a specified key selector function.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> to create a dictionary from.</param>
+		/// <param name="keySelector">A function to extract a key from each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>
+		/// A task that represents the asynchronous operation.
+		/// The task result contains a <see cref="Dictionary{TKey, TValue}"/> that contains values of type <typeparamref name="T"/> selected from the input sequence.
+		/// </returns>
+		/// <exception cref="ArgumentNullException"><paramref name="query"/> or <paramref name="keySelector"/> is null.</exception>
+		/// <exception cref="ArgumentException"><paramref name="keySelector"/> produces duplicate keys for two elements.</exception>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
+		public abstract Task<Dictionary<TKey, T>> ToDictionaryAsync<T, TKey>(IQueryable<T> query, Func<T, TKey> keySelector, CancellationToken cancellationToken);
+
+		/// <summary>
 		/// Asynchronously returns the minimum value of a sequence.
 		/// </summary>
 		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>

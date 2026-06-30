@@ -13,12 +13,7 @@ namespace Grammophone.DataAccess
 	public interface IEntityQuery : IOrderedQueryable
 	{
 		/// <summary>
-		/// The <see cref="IQueryProvider"/> of the native data access system.
-		/// </summary>
-		IQueryProvider NativeProvider { get; }
-
-		/// <summary>
-		/// The <see cref="IQueryable"/> of the native data access system.
+		/// The optional <see cref="IQueryable"/> of the native data access system.
 		/// </summary>
 		public IQueryable NativeQuery { get; }
 

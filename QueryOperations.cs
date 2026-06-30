@@ -26,7 +26,9 @@ namespace Grammophone.DataAccess
 				case IEntityQuery<T> entityQuery:
 					var expression = TranslateExpression(entityQuery, entityQuery.Expression);
 
-					return entityQuery.NativeProvider.CreateQuery<T>(expression);
+					var provider = entityQuery.NativeQuery?.Provider ?? entityQuery.Provider;
+
+					return provider.CreateQuery<T>(expression);
 
 				default:
 					return queryable;

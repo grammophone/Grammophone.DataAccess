@@ -43,9 +43,6 @@ namespace Grammophone.DataAccess.QueryExtensions
 		#region Public properties
 
 		/// <inheritdoc/>
-		public IQueryProvider NativeProvider => sourceQuery.NativeProvider;
-
-		/// <inheritdoc/>
 		public IDomainContainer DomainContainer => sourceQuery.DomainContainer;
 
 		/// <inheritdoc/>

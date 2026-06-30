@@ -63,7 +63,7 @@ namespace Grammophone.DataAccess
 
 			var query = node.Value as IEntityQuery;
 
-			if (query != null)
+			if (query != null && query.NativeQuery != null)
 			{
 				return Visit(query.NativeQuery.Expression);
 			}
@@ -80,7 +80,7 @@ namespace Grammophone.DataAccess
 			{
 				var query = value as IEntityQuery;
 
-				if (query != null)
+				if (query != null && query.NativeQuery != null)
 				{
 					return Visit(query.NativeQuery.Expression);
 				}
@@ -92,21 +92,6 @@ namespace Grammophone.DataAccess
 		#endregion
 
 		#region Private methods
-
-		private IQueryable TryGetNativeQueryable(object value)
-		{
-			if (value is IQueryable query)
-			{
-				if (query is IEntityQuery entityQuery)
-				{
-					query = entityQuery.NativeQuery;
-				}
-
-				return query;
-			}
-
-			return null;
-		}
 
 		private static MethodInfo GetMethodInfoKey(MethodInfo methodInfo)
 		{

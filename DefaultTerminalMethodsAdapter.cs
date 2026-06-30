@@ -123,6 +123,12 @@ namespace Grammophone.DataAccess
 		public override Task<Dictionary<TKey, T>> ToDictionaryAsync<T, TKey>(IQueryable<T> query, Func<T, TKey> keySelector, CancellationToken cancellationToken) => Execute(() => query.ToDictionary(keySelector), cancellationToken);
 
 		/// <inheritdoc/>
+		public override Task<Dictionary<TKey, TValue>> ToDictionaryAsync<T, TKey, TValue>(IQueryable<T> query, Func<T, TKey> keySelector, Func<T, TValue> valueSelector) => ToDictionaryAsync(query, keySelector, valueSelector, default(CancellationToken));
+
+		/// <inheritdoc/>
+		public override Task<Dictionary<TKey, TValue>> ToDictionaryAsync<T, TKey, TValue>(IQueryable<T> query, Func<T, TKey> keySelector, Func<T, TValue> valueSelector, CancellationToken cancellationToken) => Execute(() => query.ToDictionary(keySelector, valueSelector), cancellationToken);
+
+		/// <inheritdoc/>
 		public override Task<T> MinAsync<T>(IQueryable<T> query) => MinAsync(query, default(CancellationToken));
 
 		/// <inheritdoc/>

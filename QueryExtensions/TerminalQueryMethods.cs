@@ -654,6 +654,56 @@ namespace Grammophone.DataAccess.QueryExtensions
 		}
 
 		/// <summary>
+		/// Asynchronously creates a <see cref="Dictionary{TKey, TValue}"/> from a query according to specified key and value selector functions.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+		/// <typeparam name="TValue">The type of the value returned by <paramref name="valueSelector"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> to create a dictionary from.</param>
+		/// <param name="keySelector">A function to extract a key from each element.</param>
+		/// <param name="valueSelector">A function to extract a value from each element.</param>
+		/// <returns>
+		/// A task that represents the asynchronous operation.
+		/// The task result contains a <see cref="Dictionary{TKey, TValue}"/> that contains values of type <typeparamref name="TValue"/> selected from the input sequence.
+		/// </returns>
+		/// <exception cref="ArgumentNullException"><paramref name="query"/> or <paramref name="keySelector"/> is null.</exception>
+		/// <exception cref="ArgumentException"><paramref name="keySelector"/> produces duplicate keys for two elements.</exception>
+		public static Task<Dictionary<TKey, TValue>> ToDictionaryAsync<T, TKey, TValue>(this IQueryable<T> query, Func<T, TKey> keySelector, Func<T, TValue> valueSelector)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+			if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
+
+			return GetTerminalMethodsAdapter(query).ToDictionaryAsync(QueryOperations.GetNativeQueryable(query), keySelector, valueSelector);
+		}
+
+		/// <summary>
+		/// Asynchronously creates a <see cref="Dictionary{TKey, TValue}"/> from a query according to specified key and value selector functions.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>
+		/// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+		/// <typeparam name="TValue">The type of the value returned by <paramref name="valueSelector"/>.</typeparam>
+		/// <param name="query">An <see cref="IQueryable{T}"/> to create a dictionary from.</param>
+		/// <param name="keySelector">A function to extract a key from each element.</param>
+		/// <param name="valueSelector">A function to extract a value from each element.</param>
+		/// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+		/// <returns>
+		/// A task that represents the asynchronous operation.
+		/// The task result contains a <see cref="Dictionary{TKey, TValue}"/> that contains values of type <typeparamref name="TValue"/> selected from the input sequence.
+		/// </returns>
+		/// <exception cref="ArgumentNullException"><paramref name="query"/> or <paramref name="keySelector"/> is null.</exception>
+		/// <exception cref="ArgumentException"><paramref name="keySelector"/> produces duplicate keys for two elements.</exception>
+		/// <exception cref="OperationCanceledException">If the <see cref="CancellationToken"/> is canceled.</exception>
+		public static Task<Dictionary<TKey, TValue>> ToDictionaryAsync<T, TKey, TValue>(this IQueryable<T> query, Func<T, TKey> keySelector, Func<T, TValue> valueSelector, CancellationToken cancellationToken)
+		{
+			if (query == null) throw new ArgumentNullException(nameof(query));
+			if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+			if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
+
+			return GetTerminalMethodsAdapter(query).ToDictionaryAsync(QueryOperations.GetNativeQueryable(query), keySelector, valueSelector, cancellationToken);
+		}
+
+		/// <summary>
 		/// Asynchronously returns the minimum value of a sequence.
 		/// </summary>
 		/// <typeparam name="T">The type of the elements of <paramref name="query"/>.</typeparam>

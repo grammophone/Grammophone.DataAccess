@@ -118,7 +118,7 @@ namespace Grammophone.DataAccess
 
 			var queryTranslator = this.DomainContainer.TryGetQueryTranslator();
 
-			if (queryTranslator == null || queryTranslator.MethodMappingsByMethodInfo.Count == 0)
+			if (queryTranslator == null)
 			{
 				return expression;
 			}

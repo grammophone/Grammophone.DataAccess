@@ -61,9 +61,11 @@ namespace Grammophone.DataAccess
 		{
 			if (node == null) throw new ArgumentNullException(nameof(node));
 
-			if (node.Value is IEntityQuery entityQuery)
+			var query = node.Value as IEntityQuery;
+
+			if (query != null)
 			{
-				return entityQuery.Expression;
+				return Visit(query.NativeQuery.Expression);
 			}
 
 			return base.VisitConstant(node);
@@ -74,9 +76,14 @@ namespace Grammophone.DataAccess
 		{
 			if (node == null) throw new ArgumentNullException(nameof(node));
 
-			if (typeof(IQueryable).IsAssignableFrom(node.Type) && TryEvaluate(node, out var value) && value is IEntityQuery entityQuery)
+			if (typeof(IQueryable).IsAssignableFrom(node.Type) && TryEvaluate(node, out var value))
 			{
-				return entityQuery.Expression;
+				var query = value as IEntityQuery;
+
+				if (query != null)
+				{
+					return Visit(query.NativeQuery.Expression);
+				}
 			}
 
 			return base.VisitMember(node);
@@ -85,6 +92,21 @@ namespace Grammophone.DataAccess
 		#endregion
 
 		#region Private methods
+
+		private IQueryable TryGetNativeQueryable(object value)
+		{
+			if (value is IQueryable query)
+			{
+				if (query is IEntityQuery entityQuery)
+				{
+					query = entityQuery.NativeQuery;
+				}
+
+				return query;
+			}
+
+			return null;
+		}
 
 		private static MethodInfo GetMethodInfoKey(MethodInfo methodInfo)
 		{

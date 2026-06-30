@@ -18,6 +18,11 @@ namespace Grammophone.DataAccess
 		IQueryProvider NativeProvider { get; }
 
 		/// <summary>
+		/// The <see cref="IQueryable"/> of the native data access system.
+		/// </summary>
+		public IQueryable NativeQuery { get; }
+
+		/// <summary>
 		/// The domain container which the query pertains to.
 		/// </summary>
 		IDomainContainer DomainContainer { get; }

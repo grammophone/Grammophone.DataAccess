@@ -51,6 +51,9 @@ namespace Grammophone.DataAccess.QueryExtensions
 		/// <inheritdoc/>
 		public string IncludePath { get; }
 
+		/// <inheritdoc/>
+		public IQueryable NativeQuery => sourceQuery.NativeQuery;
+
 		#endregion
 
 		#region Explicit IQueryable implementation

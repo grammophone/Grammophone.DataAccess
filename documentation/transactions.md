@@ -67,3 +67,12 @@ If any nested operation fails, the whole operation can roll back.
 `TransactionMode.Deferred` defers save and commit work until the top-level transaction commits. This is useful when a provider or execution strategy needs to retry the whole unit of work.
 
 `ITransaction.Pass()` marks the transaction as successful without saving. It lets a higher-level transaction decide when to save and commit.
+
+## Observing a transaction
+
+A nested method might want to know the final outcome of the transaction, since now it can participate in a bigger transaction scheme
+initiated by some other method higher in the call stack. Example cases are files clean up,
+compensation actions for attached resources. Clients can listen to the following events, making sure they don't throw an exception:
+
+* `Succeeding`: Fired when the whole transaction is committed successfully.
+* `RollingBack`: Fired when the whole transaction is rolled back.

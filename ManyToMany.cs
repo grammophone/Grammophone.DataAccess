@@ -43,7 +43,7 @@ namespace Grammophone.DataAccess
 		/// <summary>
 		/// Gets or sets the foreign-key value that references the left-side entity.
 		/// </summary>
-		public TLeftKey LeftID
+		public virtual TLeftKey LeftID
 		{
 			get { return leftID; }
 			set
@@ -60,7 +60,7 @@ namespace Grammophone.DataAccess
 		/// <summary>
 		/// Gets or sets the foreign-key value that references the right-side entity.
 		/// </summary>
-		public TRightKey RightID
+		public virtual TRightKey RightID
 		{
 			get { return rightID; }
 			set
@@ -77,7 +77,7 @@ namespace Grammophone.DataAccess
 		/// <summary>
 		/// Gets or sets the left-side entity.
 		/// </summary>
-		public TLeft Left
+		public virtual TLeft Left
 		{
 			get { return left; }
 			set
@@ -94,7 +94,7 @@ namespace Grammophone.DataAccess
 		/// <summary>
 		/// Gets or sets the right-side entity.
 		/// </summary>
-		public TRight Right
+		public virtual TRight Right
 		{
 			get { return right; }
 			set

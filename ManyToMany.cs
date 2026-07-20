@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Grammophone.DataAccess
 {
@@ -20,10 +18,8 @@ namespace Grammophone.DataAccess
 	/// </para>
 	/// </summary>
 	/// <typeparam name="TLeft">The left-side entity type.</typeparam>
-	/// <typeparam name="TLeftKey">The primary-key type of the left-side entity.</typeparam>
 	/// <typeparam name="TRight">The right-side entity type.</typeparam>
-	/// <typeparam name="TRightKey">The primary-key type of the right-side entity.</typeparam>
-	public class ManyToMany<TLeft, TLeftKey, TRight, TRightKey> :
+	public class ManyToMany<TLeft, TRight> :
 			INotifyPropertyChanging,
 			INotifyPropertyChanged
 			where TLeft : class
@@ -31,48 +27,12 @@ namespace Grammophone.DataAccess
 	{
 		#region Private fields
 
-		private TLeftKey leftID;
-		private TRightKey rightID;
 		private TLeft left;
 		private TRight right;
 
 		#endregion
 
 		#region Public properties
-
-		/// <summary>
-		/// Gets or sets the foreign-key value that references the left-side entity.
-		/// </summary>
-		public virtual TLeftKey LeftID
-		{
-			get { return leftID; }
-			set
-			{
-				if (!Equals(leftID, value))
-				{
-					OnPropertyChanging();
-					leftID = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the foreign-key value that references the right-side entity.
-		/// </summary>
-		public virtual TRightKey RightID
-		{
-			get { return rightID; }
-			set
-			{
-				if (!Equals(rightID, value))
-				{
-					OnPropertyChanging();
-					rightID = value;
-					OnPropertyChanged();
-				}
-			}
-		}
 
 		/// <summary>
 		/// Gets or sets the left-side entity.
@@ -155,6 +115,68 @@ namespace Grammophone.DataAccess
 			if (handler != null)
 			{
 				handler(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+	}
+
+	/// <summary>
+	/// Concrete many-to-many join entity with explicit foreign-key properties.
+	/// <para>
+	/// Use this instead of <see cref="ManyToMany{TLeft, TRight}"/> when you need
+	/// to reference the FK values as CLR properties (e.g., for column rename via
+	/// <c>.Property(mm => mm.LeftID).HasColumnName("X_ID")</c> in <c>OnModelCreating</c>).
+	/// </para>
+	/// </summary>
+	/// <typeparam name="TLeft">The left-side entity type.</typeparam>
+	/// <typeparam name="TLeftKey">The primary-key type of the left-side entity.</typeparam>
+	/// <typeparam name="TRight">The right-side entity type.</typeparam>
+	/// <typeparam name="TRightKey">The primary-key type of the right-side entity.</typeparam>
+	public class ManyToMany<TLeft, TLeftKey, TRight, TRightKey> : ManyToMany<TLeft, TRight>
+		where TLeft : class
+		where TRight : class
+	{
+		#region Private fields
+
+		private TLeftKey leftID;
+		private TRightKey rightID;
+
+		#endregion
+
+		#region Public properties
+
+		/// <summary>
+		/// Gets or sets the foreign-key value that references the left-side entity.
+		/// </summary>
+		public virtual TLeftKey LeftID
+		{
+			get { return leftID; }
+			set
+			{
+				if (!Equals(leftID, value))
+				{
+					OnPropertyChanging();
+					leftID = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the foreign-key value that references the right-side entity.
+		/// </summary>
+		public virtual TRightKey RightID
+		{
+			get { return rightID; }
+			set
+			{
+				if (!Equals(rightID, value))
+				{
+					OnPropertyChanging();
+					rightID = value;
+					OnPropertyChanged();
+				}
 			}
 		}
 

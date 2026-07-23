@@ -17,20 +17,46 @@ namespace Grammophone.DataAccess
 		where E : class
 	{
 		/// <summary>
-		/// Adds the given entity to the container underlying the set 
-		/// in the Added state such that it will be inserted into the database when 
+		/// Adds the given entity to the container underlying the set
+		/// in the Added state such that it will be inserted into the database when
 		/// <see cref="IDomainContainer.SaveChanges"/> is called.
 		/// </summary>
 		/// <param name="entity">The entity to add.</param>
+		/// <remarks>
+		/// <para>
+		/// This method states that the entity belongs to the unit of work, it does not schedule an insertion.
+		/// Adding an entity which the container already tracks therefore changes nothing, whether it has been
+		/// stored in the meantime or not.
+		/// </para>
+		/// <para>
+		/// This matters because <see cref="IDomainContainer.BeginTransaction()"/> scopes nest and each of them
+		/// saves when it commits, so an entity may well have been stored by an inner scope before control returns
+		/// to the code which adds it, and that code has no way of telling. Were adding to be taken literally, the
+		/// entity would be stored a second time: under the native providers that means either a refused insertion
+		/// of an already assigned key, or a duplicate row silently created under a fresh key, carrying the entity
+		/// at hand over to it and away from the row it was read from.
+		/// </para>
+		/// <para>
+		/// Adding an entity which is being deleted is refused, because it could mean either abandoning the
+		/// deletion or storing a second entity and the two are not interchangeable. An entity which has already
+		/// been deleted, on the other hand, is no longer tracked and is therefore indistinguishable from any
+		/// other detached entity carrying an assigned key, so adding it is left to the underlying provider.
+		/// </para>
+		/// </remarks>
+		/// <exception cref="DataAccessException">Thrown when the entity is being deleted.</exception>
 		void Add(E entity);
 
 		/// <summary>
-		/// Adds the given collection of entities into the set 
-		/// with each entity being put into the Added state such that it 
-		/// will be inserted into the database 
+		/// Adds the given collection of entities into the set
+		/// with each entity being put into the Added state such that it
+		/// will be inserted into the database
 		/// when <see cref="IDomainContainer.SaveChanges"/> is called.
 		/// </summary>
 		/// <param name="entities"></param>
+		/// <remarks>
+		/// Each entity is treated as in <see cref="Add(E)"/>, so those which the container already tracks
+		/// are left alone.
+		/// </remarks>
 		void AddRange(IEnumerable<E> entities);
 
 		/// <summary>

@@ -19,6 +19,7 @@ namespace Grammophone.DataAccess
 	/// </summary>
 	/// <typeparam name="TLeft">The left-side entity type.</typeparam>
 	/// <typeparam name="TRight">The right-side entity type.</typeparam>
+	[Serializable]
 	public class ManyToMany<TLeft, TRight> :
 			INotifyPropertyChanging,
 			INotifyPropertyChanged
@@ -133,6 +134,7 @@ namespace Grammophone.DataAccess
 	/// <typeparam name="TLeftKey">The primary-key type of the left-side entity.</typeparam>
 	/// <typeparam name="TRight">The right-side entity type.</typeparam>
 	/// <typeparam name="TRightKey">The primary-key type of the right-side entity.</typeparam>
+	[Serializable]
 	public class ManyToMany<TLeft, TLeftKey, TRight, TRightKey> : ManyToMany<TLeft, TRight>
 		where TLeft : class
 		where TRight : class

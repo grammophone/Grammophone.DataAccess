@@ -1,4 +1,4 @@
-namespace Grammophone.DataAccess.QueryExtensions
+﻿namespace Grammophone.DataAccess.QueryExtensions
 {
 	/// <summary>
 	/// Supports typed chaining of portable eager-loading paths.

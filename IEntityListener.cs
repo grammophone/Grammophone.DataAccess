@@ -27,7 +27,9 @@ namespace Grammophone.DataAccess
 		void OnChanging(object entity);
 
 		/// <summary>
-		/// Called after materialization of an entity.
+		/// Called after materialization of an entity. May be called more than once for the same entity
+		/// within a single read — the underlying ORM can revisit an instance during graph fix-up or
+		/// single-result verification — so implementations must be idempotent.
 		/// </summary>
 		void OnRead(object entity);
 

@@ -98,4 +98,6 @@ Listeners should throw meaningful domain or security exceptions when access is d
 
 Listeners should assume they may receive entities of different runtime types, including proxy types.
 
+Listeners should be idempotent for reads: `OnRead` may be called more than once for the same entity within a single read, because the underlying ORM can revisit an instance during graph fix-up or single-result verification. Neither provider deduplicates, so the number of calls is not guaranteed.
+
 Listeners should not depend on EF-specific entry types. Use `IDomainContainer.Entry(entity)` or provider-neutral services when entry information is needed.
